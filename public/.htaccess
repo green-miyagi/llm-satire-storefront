@@ -1,4 +1,15 @@
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
+
+# Serve existing files/dirs directly
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Pretty product URLs: /product/slug → product.php?slug=slug
+RewriteRule ^product/([a-zA-Z0-9_-]+)$ product.php?slug=$1 [QSA,L]
+
+# Route /api/products.json to the PHP endpoint
+RewriteRule ^api/products\.json$ api/products.json.php [QSA,L]
+
+# Catch-all: serve static index for SPA-like behavior
 RewriteRule ^(.*)$ index.php [QSA,L]

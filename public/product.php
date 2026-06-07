@@ -1,103 +1,164 @@
 <?php
-/**
- * product.php — product detail page
- */
-
 require_once __DIR__ . '/../src/config.php';
-require_once __DIR__ . '/../src/api/products.php';
-require_once __DIR__ . '/../src/components/header.php';
-require_once __DIR__ . '/../src/components/footer.php';
+require_once __DIR__ . '/../src/products.php';
 
-$handle = $_GET['handle'] ?? '';
-if (!$handle) {
-    header('Location: /products.php');
-    exit;
-}
+$slug = $_GET['slug'] ?? '';
+$product = get_product_by_slug($slug);
 
-$product = get_product_by_handle($handle);
 if (!$product) {
-    render_header('product not found — llm satire');
-    echo '<section class="section"><h1>404</h1><p>this product hallucinated itself out of existence.</p><a href="/products.php" class="btn">← back to products</a></section>';
-    render_footer();
-    exit;
+  http_response_code(404);
+  require __DIR__ . '/../src/components/header.php';
+  echo '<main class="container"><section class="error-page"><pre class="ascii-art">';
+  echo '  (  )   (  )';
+  echo "\n   ( ) ( )";
+  echo "\n     ( )";
+  echo "\n    /|\\";
+  echo "\n   / | \\";
+  echo "\n      |";
+  echo "\n     / \\";
+  echo "\n  [product not found]";
+  echo '</pre><a href="/shop.php" class="btn primary">← back to shop</a></section></main>';
+  require __DIR__ . '/../src/components/footer.php';
+  exit;
 }
 
-$title  = htmlspecialchars($product['title']);
-$desc   = $product['descriptionHtml'] ?: '<p>' . htmlspecialchars($product['description'] ?? '') . '</p>';
-$price  = format_price($product['priceRange']);
-$available = $product['availableForSale'];
-
-$images = array_map(fn($e) => $e['node'], $product['images']['edges'] ?? []);
-$variants = array_map(fn($e) => $e['node'], $product['variants']['edges'] ?? []);
-$firstVariantId = $variants[0]['id'] ?? '';
-
-// extract satire metafields
-$metafields = [];
-foreach ($product['metafields']['edges'] ?? [] as $e) {
-    $metafields[$e['node']['key']] = $e['node']['value'];
-}
-
-render_header($title . ' — llm satire');
+$name = $product['name'];
+$price = $product['price_display'];
+$tokens = $product['token_price'];
+$temp = $product['temperature'];
+$desc = $product['description'];
+$features = $product['features'] ?? [];
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><?= htmlspecialchars($name) ?> / aillm satire</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="product-page">
+  <?php include __DIR__ . '/../src/components/header.php'; ?>
 
-<section class="section product-detail">
-    <a href="/products.php" class="back-link">← back to products</a>
+  <main class="container product-detail">
+    <nav class="breadcrumb">
+      <a href="/shop.php" class="link">← shop</a>
+    </nav>
 
     <div class="product-detail-layout">
-        <div class="product-detail-images">
-            <?php if (!empty($images)): ?>
-                <div class="product-main-image">
-                    <img src="<?= htmlspecialchars($images[0]['url']) ?>" alt="<?= $title ?>">
-                </div>
-                <?php if (count($images) > 1): ?>
-                <div class="product-thumbnails">
-                    <?php foreach ($images as $img): ?>
-                        <img src="<?= htmlspecialchars($img['url']) ?>" alt="" loading="lazy">
-                    <?php endforeach; ?>
-                </div>
-                <?php endif; ?>
-            <?php else: ?>
-                <div class="product-image-placeholder">
-                    <span>image not in training set</span>
-                </div>
-            <?php endif; ?>
+      <div class="product-visual">
+        <?php
+        $imgPath = __DIR__ . '/assets/images/' . $product['image'] . '.png';
+        if (file_exists($imgPath)):
+        ?>
+        <img src="/assets/images/<?= $product['image'] ?>.png" alt="<?= htmlspecialchars($name) ?>" class="product-image-detail">
+        <?php endif; ?>
+        <div class="model-card-frame">
+          <div class="model-card-header">
+            <span class="model-label">model card</span>
+            <span class="model-version">v<?= rand(1,9) ?>.<?= rand(0,9) ?>.<wbr><?= rand(0,99) ?></span>
+          </div>
+          <div class="model-card-body">
+            <div class="model-name"><?= htmlspecialchars($name) ?></div>
+            <div class="model-specs">
+              <div class="spec-row"><span class="spec-label">temperature</span><span class="spec-value"><?= $temp ?></span></div>
+              <div class="spec-row"><span class="spec-label">parameters</span><span class="spec-value"><?= htmlspecialchars($product['parameters'] ?? 'unknown') ?></span></div>
+              <div class="spec-row"><span class="spec-label">context window</span><span class="spec-value"><?= htmlspecialchars($product['context_window'] ?? 'n/a') ?></span></div>
+              <div class="spec-row"><span class="spec-label">training data</span><span class="spec-value"><?= htmlspecialchars($product['training_data'] ?? 'unknown') ?></span></div>
+            </div>
+          </div>
+          <div class="model-card-footer">
+            <span class="model-id"><?= $product['id'] ?></span>
+            <span class="model-type"><?= $product['type'] ?? 'digital' ?></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-info">
+        <h1 class="product-title"><?= htmlspecialchars($name) ?></h1>
+        <p class="product-description"><?= htmlspecialchars($desc) ?></p>
+
+        <?php if (!empty($features)): ?>
+        <div class="product-features">
+          <h3>⎔ features</h3>
+          <ul>
+            <?php foreach ($features as $f): ?>
+              <li><?= htmlspecialchars($f) ?></li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+        <?php endif; ?>
+
+        <?php if (!empty($product['stories'] ?? [])): ?>
+        <div class="product-features">
+          <h3>⎔ stories</h3>
+          <ul>
+            <?php foreach ($product['stories'] as $s): ?>
+              <li><?= htmlspecialchars($s) ?></li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+        <?php endif; ?>
+
+        <?php if (!empty($product['scenarios'] ?? [])): ?>
+        <div class="product-features">
+          <h3>⎔ scenarios</h3>
+          <ul>
+            <?php foreach ($product['scenarios'] as $s): ?>
+              <li><?= htmlspecialchars($s) ?></li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+        <?php endif; ?>
+
+        <?php if (!empty($product['recipes'] ?? [])): ?>
+        <div class="product-features">
+          <h3>⎔ recipes</h3>
+          <ul>
+            <?php foreach ($product['recipes'] as $r): ?>
+              <li><?= htmlspecialchars($r) ?></li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+        <?php endif; ?>
+
+        <div class="product-pricing">
+          <div class="price-row">
+            <span class="price-label">price</span>
+            <span class="price-amount"><?= $price ?></span>
+          </div>
+          <div class="price-row token-row">
+            <span class="price-label">token equivalent</span>
+            <span class="price-tokens">~<?= $tokens ?> tokens</span>
+          </div>
+          <div class="price-row temperature-row">
+            <span class="price-label">temperature</span>
+            <span class="price-temp">τ = <?= $temp ?></span>
+          </div>
         </div>
 
-        <div class="product-detail-info">
-            <h1 class="product-title"><?= $title ?></h1>
-            <p class="product-price"><?= $price ?></p>
-
-            <div class="product-description">
-                <?= $desc ?>
-            </div>
-
-            <?php if (!empty($metafields)): ?>
-            <div class="product-metafields">
-                <h3>model card</h3>
-                <dl class="metafield-list">
-                    <?php foreach ($metafields as $key => $val): ?>
-                        <dt><?= htmlspecialchars($key) ?></dt>
-                        <dd><?= htmlspecialchars(substr($val, 0, 200)) ?></dd>
-                    <?php endforeach; ?>
-                </dl>
-            </div>
-            <?php endif; ?>
-
-            <div class="product-actions">
-                <?php if ($available && $firstVariantId): ?>
-                    <button class="btn btn-primary add-to-cart"
-                            data-variant-id="<?= htmlspecialchars($firstVariantId) ?>"
-                            data-product-title="<?= $title ?>">
-                        add to context window
-                    </button>
-                <?php else: ?>
-                    <button class="btn btn-disabled" disabled>
-                        hallucinated away
-                    </button>
-                <?php endif; ?>
-            </div>
+        <button class="btn primary large add-to-cart-btn" onclick="addToCart('<?= htmlspecialchars($product['slug']) ?>')">
+          + add to context window
+        </button>
+        <?php if (($product['category'] ?? '') === 'art'): ?>
+        <div class="pods-badge">
+          ⎔ also available as a <a href="/about.php#print">physical print</a> — no upfront cost, shipped to your door
         </div>
+        <?php endif; ?>
+
+        <button class="btn primary large add-to-cart-btn" onclick="addToCart('<?= htmlspecialchars($product['slug']) ?>')">
+          + add to context window
+        </button>
+        <p class="subtle text-center">instant digital delivery · no shipping · no wait</p>
+        <?php if (($product['category'] ?? '') === 'art'): ?>
+        <p class="subtle text-center">also available as a <a href="/about.php#print">physical print</a> — no upfront cost</p>
+        <?php endif; ?>
+      </div>
     </div>
-</section>
+  </main>
 
-<?php render_footer(); ?>
+  <?php include __DIR__ . '/../src/components/footer.php'; ?>
+  <script src="/assets/js/app.js"></script>
+</body>
+</html>

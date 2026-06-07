@@ -1,85 +1,84 @@
 <?php
-/**
- * cart.php — cart page
- */
-
 require_once __DIR__ . '/../src/config.php';
-require_once __DIR__ . '/../src/components/header.php';
-require_once __DIR__ . '/../src/components/footer.php';
-
-render_header('cart — llm satire');
+require_once __DIR__ . '/../src/products.php';
+$products = load_products();
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cart / aillm satire</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="cart-page">
+  <?php include __DIR__ . '/../src/components/header.php'; ?>
 
-<section class="section cart-page">
-    <h1 class="section-title">context window</h1>
-    <p class="section-sub">items you've decided to include in inference</p>
+  <main class="container">
+    <section class="page-header">
+      <h1>↻ your cart</h1>
+      <p class="subtitle">items in your context window</p>
+    </section>
 
-    <div id="cart-contents">
-        <div class="cart-empty">
-            <p>your context window is empty.</p>
-            <a href="/products.php" class="btn">browse products →</a>
-        </div>
+    <div id="cart-contents" class="cart-contents">
+      <div class="loading">loading cart...</div>
+    </div>
+
+    <div class="cart-empty" id="cart-empty" style="display:none;">
+      <pre class="ascii-art">
+  ┌──────────────────────┐
+  │                      │
+  │   (  )   (  )        │
+  │    ( ) ( )           │
+  │      ( )             │
+  │                      │
+  │   your cart is       │
+  │   empty.             │
+  │                      │
+  │   like a null         │
+  │   output.            │
+  │                      │
+  └──────────────────────┘
+      </pre>
+      <p class="subtle">nothing in your context window yet. <a href="/shop.php" class="link">browse products</a></p>
     </div>
 
     <div id="cart-summary" class="cart-summary" style="display:none;">
-        <div class="cart-total">
-            <span>total tokens</span>
-            <span id="cart-total-amount">—</span>
-        </div>
-        <a id="checkout-button" href="#" class="btn btn-primary">
-            run inference (checkout)
-        </a>
+      <div class="summary-row">
+        <span>subtotal</span>
+        <span id="cart-subtotal">$0.00</span>
+      </div>
+      <div class="summary-row">
+        <span>token total</span>
+        <span id="cart-tokens">0 tokens</span>
+      </div>
+      <div class="summary-row delivery-note">
+        <span>delivery</span>
+        <span>digital · instant</span>
+      </div>
+
+      <button id="checkout-btn" class="btn primary large" onclick="handleCheckout()">
+        checkout →
+      </button>
+      <p class="subtle text-center secure-note">secured by stripe · we never see your payment info</p>
+      <p class="subtle text-center token-note">prices shown in usd · tokens are a vibe check</p>
     </div>
-</section>
+  </main>
 
-<script>
-function loadCart() {
-    const cartId = localStorage.getItem('cartId');
-    if (!cartId) return;
+  <div id="checkout-overlay" class="overlay" style="display:none;">
+    <div class="overlay-content">
+      <pre class="thinking-animation">
+╔══════════════════════╗
+║  processing tokens   ║
+║  ░░░░░░░░░░░░░░░░    ║
+║  estimating cost...  ║
+╚══════════════════════╝
+      </pre>
+    </div>
+  </div>
 
-    fetch('/api/cart-endpoint.php?action=get&cartId=' + encodeURIComponent(cartId))
-        .then(r => r.json())
-        .then(cart => {
-            if (!cart || !cart.lines?.edges?.length) {
-                document.querySelector('.cart-empty').style.display = 'block';
-                document.getElementById('cart-summary').style.display = 'none';
-                document.getElementById('cart-count').textContent = '0';
-                return;
-            }
-
-            document.querySelector('.cart-empty').style.display = 'none';
-            document.getElementById('cart-summary').style.display = 'block';
-
-            const container = document.getElementById('cart-contents');
-            let html = '<div class="cart-lines">';
-            let total = 0;
-            cart.lines.edges.forEach(edge => {
-                const item = edge.node;
-                const merch = item.merchandise;
-                const price = parseFloat(merch.price.amount);
-                const subtotal = price * item.quantity;
-                total += subtotal;
-                html += `
-                    <div class="cart-line">
-                        <div class="cart-line-info">
-                            <h4>${merch.product.title}</h4>
-                            <p>${merch.title} × ${item.quantity}</p>
-                        </div>
-                        <div class="cart-line-price">$${subtotal.toFixed(2)}</div>
-                    </div>
-                `;
-            });
-            html += '</div>';
-            container.innerHTML = html;
-
-            document.getElementById('cart-total-amount').textContent = '$' + total.toFixed(2);
-            document.getElementById('cart-count').textContent = cart.totalQuantity;
-            document.getElementById('checkout-button').href = cart.checkoutUrl;
-        })
-        .catch(() => {});
-}
-
-loadCart();
-</script>
-
-<?php render_footer(); ?>
+  <?php include __DIR__ . '/../src/components/footer.php'; ?>
+  <script src="/assets/js/app.js"></script>
+</body>
+</html>
