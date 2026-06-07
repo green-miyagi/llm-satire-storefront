@@ -38,32 +38,6 @@ body {
   display: flex;
   flex-direction: column;
   -webkit-font-smoothing: antialiased;
-  position: relative;
-}
-
-/* single faint sensor glow — like light pollution on a dark horizon */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: radial-gradient(ellipse 500px 300px at 65% 20%, rgba(0, 255, 65, 0.04) 0%, transparent 70%);
-}
-
-/* plotted star dots — sparse, like a star chart */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  box-shadow:
-    82vw 18vh 0 0 rgba(255,255,255,0.07),
-    15vw 65vh 0 0 rgba(255,255,255,0.05),
-    45vw 10vh 0 0 rgba(255,255,255,0.06),
-    70vw 85vh 0 0 rgba(0, 255, 65, 0.04),
-    5vw 40vh 0 0 rgba(255,255,255,0.05);
 }
 
 a { color: var(--green); text-decoration: none; transition: opacity .2s; }

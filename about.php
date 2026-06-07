@@ -46,12 +46,25 @@ require_once __DIR__ . '/src/config.php';
       </div>
 
       <div class="about-section">
+        <h2>why buy this stuff?</h2>
+        <ul class="hook-list">
+          <li>our products are so convincing that ai researchers keep citing our fake papers</li>
+          <li>the hallucination certificate comes pre-authenticated by a model that doesn't exist</li>
+          <li>perfect gift for the ai enthusiast who already has everything (including a poorly-aligned ai)</li>
+          <li>every purchase funds our ongoing research into what happens when you give language models a credit card</li>
+          <li>the alignment poster series has been described as "what if magritte designed a safety benchmark" — we don't know what that means either but we put it on the product page</li>
+          <li>our prompt engineer's cookbook includes a recipe titled "how to make your ai think it's a sandwich" — it works about 30% of the time</li>
+        </ul>
+      </div>
+
+      <div class="about-section">
         <h2>limitations</h2>
         <ul>
           <li>we cannot guarantee that any product is exactly as described (but we try)</li>
           <li>token prices are a vibe check, not a currency (yet)</li>
           <li>if something breaks, it might take a few inference steps to fix</li>
           <li>no refunds, but we also won't charge you more than once (unless you buy again)</li>
+          <li>we cannot be held responsible if your certificate of hallucination causes existential dread</li>
         </ul>
       </div>
 
