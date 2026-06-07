@@ -141,18 +141,11 @@ $features = $product['features'] ?? [];
         <button class="btn primary large add-to-cart-btn" onclick="addToCart('<?= htmlspecialchars($product['slug']) ?>')">
           + add to context window
         </button>
+        <p class="subtle text-center" style="margin-top:0.75rem">instant digital delivery · no shipping · no wait</p>
         <?php if (($product['category'] ?? '') === 'art'): ?>
         <div class="pods-badge">
           ⎔ also available as a <a href="/about.php#print">physical print</a> — no upfront cost, shipped to your door
         </div>
-        <?php endif; ?>
-
-        <button class="btn primary large add-to-cart-btn" onclick="addToCart('<?= htmlspecialchars($product['slug']) ?>')">
-          + add to context window
-        </button>
-        <p class="subtle text-center">instant digital delivery · no shipping · no wait</p>
-        <?php if (($product['category'] ?? '') === 'art'): ?>
-        <p class="subtle text-center">also available as a <a href="/about.php#print">physical print</a> — no upfront cost</p>
         <?php endif; ?>
       </div>
     </div>
