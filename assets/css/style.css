@@ -7,19 +7,19 @@
 
 :root {
   --bg: #0a0a0a;
-  --bg-alt: #111;
-  --bg-card: #0d0d0d;
-  --border: #1a1a1a;
-  --border-light: #2a2a2a;
-  --text: #d4d4d4;
-  --text-muted: #666;
-  --text-dim: #444;
+  --bg-alt: #141414;
+  --bg-card: #111;
+  --border: #222;
+  --border-light: #333;
+  --text: #e0e0e0;
+  --text-muted: #999;
+  --text-dim: #777;
   --green: #00ff41;
   --green-dim: #00cc33;
   --amber: #ffb000;
-  --magenta: #ff00ff;
-  --cyan: #00ffff;
-  --red: #ff3355;
+  --magenta: #ff44ff;
+  --cyan: #44ffff;
+  --red: #ff4466;
   --font: 'SF Mono', 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Menlo, monospace;
   --font-ui: -apple-system, 'Segoe UI', system-ui, sans-serif;
   --radius: 4px;
@@ -28,12 +28,12 @@
   --glow-amber: 0 0 10px rgba(255, 176, 0, 0.3);
 }
 
-html { font-size: 15px; }
+html { font-size: 16px; }
 body {
   font-family: var(--font);
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
+  line-height: 1.7;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -52,7 +52,7 @@ ul { list-style: none; }
 ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
 
 /* ── utilities ── */
-.container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; width: 100%; }
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; width: 100%; }
 .subtle { color: var(--text-muted); font-size: 0.85rem; }
 .text-center { text-align: center; }
 .glow { text-shadow: var(--glow-green); }
@@ -102,7 +102,7 @@ pre.ascii-art {
 /* ── header ── */
 .site-header {
   border-bottom: 1px solid var(--border);
-  padding: 1rem 0;
+  padding: 1.25rem 0;
   background: rgba(10,10,10,0.95);
   backdrop-filter: blur(10px);
   position: sticky;
@@ -117,10 +117,10 @@ pre.ascii-art {
 }
 
 .site-logo {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   display: flex;
   align-items: baseline;
-  gap: 2px;
+  gap: 3px;
   color: var(--text);
 }
 .logo-bracket { color: var(--text-dim); font-weight: 300; }
@@ -128,8 +128,8 @@ pre.ascii-art {
 .logo-sub { color: var(--text-muted); font-size: 0.75rem; margin-left: 2px; }
 .site-logo:hover .logo-text { text-shadow: var(--glow-green); }
 
-.nav-links { display: flex; gap: 1.5rem; align-items: center; }
-.nav-link { color: var(--text-muted); font-size: 0.9rem; }
+.nav-links { display: flex; gap: 2rem; align-items: center; }
+.nav-link { color: var(--text-muted); font-size: 0.95rem; }
 .nav-link:hover { color: var(--green); }
 
 .cart-link { position: relative; }
@@ -213,22 +213,22 @@ pre.ascii-art {
 
 /* ── featured products ── */
 .featured-section {
-  padding: 4rem 0;
+  padding: 5rem 0;
 }
 
 .section-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
-.section-header h2 { font-size: 1.1rem; font-weight: 400; color: var(--text); }
+.section-header h2 { font-size: 1.2rem; font-weight: 400; color: var(--text); }
 
 /* ── product grid ── */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 2rem;
 }
 
 .product-card {
@@ -298,19 +298,19 @@ pre.ascii-art {
   border: 1px solid var(--border);
 }
 
-.product-card-body { padding: 1rem; }
-.product-name { font-size: 0.95rem; font-weight: 500; transition: color .2s; line-height: 1.3; }
-.product-desc { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.4rem; line-height: 1.4; }
+.product-card-body { padding: 1.25rem; }
+.product-name { font-size: 1rem; font-weight: 500; transition: color .2s; line-height: 1.4; }
+.product-desc { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.5; }
 
 .product-meta {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
 }
-.product-price { color: var(--green); font-size: 0.9rem; }
-.product-tokens { color: var(--text-muted); font-size: 0.75rem; }
-.product-temp { color: var(--amber); font-size: 0.7rem; margin-left: auto; }
+.product-price { color: var(--green); font-size: 1rem; }
+.product-tokens { color: var(--text-muted); font-size: 0.8rem; }
+.product-temp { color: var(--amber); font-size: 0.75rem; margin-left: auto; }
 
 /* ── manifesto ── */
 .manifesto-section {
