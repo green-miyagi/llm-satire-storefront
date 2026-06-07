@@ -1,0 +1,18 @@
+{
+  "name": "llm-satire-storefront",
+  "version": "1.0.0",
+  "description": "Headless storefront for LLM satire Shopify store - green miyagi aesthetic",
+  "type": "module",
+  "scripts": {
+    "dev": "php -S localhost:8080 -t public",
+    "build": "echo 'Static PHP/HTML - no build step needed'",
+    "deploy": "git push hostinger main"
+  },
+  "dependencies": {
+    "graphql-request": "^7.0.1"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=20"
+  }
+}

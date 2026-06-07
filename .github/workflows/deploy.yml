@@ -1,0 +1,38 @@
+name: deploy to hostinger
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: sync to hostinger
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+          HOSTINGER_PATH: ${{ secrets.HOSTINGER_PATH }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "$HOSTINGER_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+          rsync -avz --delete \
+            --exclude '.git' \
+            --exclude '.github' \
+            --exclude '.env' \
+            --exclude 'node_modules' \
+            --exclude '.gitignore' \
+            public/ \
+            "${HOSTINGER_USER}@${HOSTINGER_HOST}:${HOSTINGER_PATH}/"
+
+          # sync src/ (for PHP includes)
+          rsync -avz \
+            --exclude '.git' \
+            src/ \
+            "${HOSTINGER_USER}@${HOSTINGER_HOST}:${HOSTINGER_PATH}/src/"
