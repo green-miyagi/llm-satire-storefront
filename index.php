@@ -11,7 +11,7 @@ $featured = array_slice($products, 0, 4);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>aillm satire</title>
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/style.css?v=<?= filemtime(__DIR__.'/assets/css/style.css') ?>">
   <meta name="description" content="we love this stuff. we also think it's ridiculous. a satire store for ai and llm culture.">
 </head>
 <body class="home-page">

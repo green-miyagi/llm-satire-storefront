@@ -8,7 +8,7 @@ require_once __DIR__ . '/src/config.php';
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>about / aillm satire</title>
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/style.css?v=<?= filemtime(__DIR__.'/assets/css/style.css') ?>">
 </head>
 <body class="about-page">
   <?php include __DIR__ . '/src/components/header.php'; ?>
