@@ -1,7 +1,7 @@
 <?php
 // PHP built-in dev server router
 // Mirrors .htaccess rewrite rules for local development
-// Usage: php -S localhost:8080 -t public public/router.php
+// Usage: php -S localhost:8080 -t . router.php
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 

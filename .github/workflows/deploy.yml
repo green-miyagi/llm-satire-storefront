@@ -22,17 +22,13 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H "$HOSTINGER_HOST" >> ~/.ssh/known_hosts 2>/dev/null
 
+          # project root IS the web root — no nested public/ directory
           rsync -avz --delete \
             --exclude '.git' \
             --exclude '.github' \
             --exclude '.env' \
             --exclude 'node_modules' \
             --exclude '.gitignore' \
-            public/ \
+            --exclude 'README.md' \
+            ./ \
             "${HOSTINGER_USER}@${HOSTINGER_HOST}:${HOSTINGER_PATH}/"
-
-          # sync src/ (for PHP includes)
-          rsync -avz \
-            --exclude '.git' \
-            src/ \
-            "${HOSTINGER_USER}@${HOSTINGER_HOST}:${HOSTINGER_PATH}/src/"

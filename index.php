@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../src/config.php';
-require_once __DIR__ . '/../src/products.php';
+require_once __DIR__ . '/src/config.php';
+require_once __DIR__ . '/src/products.php';
 $products = load_products();
 $featured = array_slice($products, 0, 4);
 ?>
@@ -15,7 +15,7 @@ $featured = array_slice($products, 0, 4);
   <meta name="description" content="we love this stuff. we also think it's ridiculous. a satire store for ai and llm culture.">
 </head>
 <body class="home-page">
-  <?php include __DIR__ . '/../src/components/header.php'; ?>
+  <?php include __DIR__ . '/src/components/header.php'; ?>
 
   <main>
     <section class="hero">
@@ -129,7 +129,7 @@ $featured = array_slice($products, 0, 4);
     </section>
   </main>
 
-  <?php include __DIR__ . '/../src/components/footer.php'; ?>
+  <?php include __DIR__ . '/src/components/footer.php'; ?>
   <script src="/assets/js/app.js"></script>
 </body>
 </html>

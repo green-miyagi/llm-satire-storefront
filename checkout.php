@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . '/../src/config.php';
-require_once __DIR__ . '/../src/stripe.php';
-require_once __DIR__ . '/../src/products.php';
+require_once __DIR__ . '/src/config.php';
+require_once __DIR__ . '/src/stripe.php';
+require_once __DIR__ . '/src/products.php';
 
 $session_id = $_GET['session_id'] ?? '';
 $order = null;
@@ -49,7 +49,7 @@ if ($order && isset($order['line_items']['data'])) {
   <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body class="checkout-page">
-  <?php include __DIR__ . '/../src/components/header.php'; ?>
+  <?php include __DIR__ . '/src/components/header.php'; ?>
 
   <main class="container">
     <?php if ($error && !$order): ?>
@@ -139,7 +139,7 @@ if ($order && isset($order['line_items']['data'])) {
     <?php endif; ?>
   </main>
 
-  <?php include __DIR__ . '/../src/components/footer.php'; ?>
+  <?php include __DIR__ . '/src/components/footer.php'; ?>
   <script src="/assets/js/app.js"></script>
 </body>
 </html>

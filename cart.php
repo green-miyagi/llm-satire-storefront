@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../src/config.php';
-require_once __DIR__ . '/../src/products.php';
+require_once __DIR__ . '/src/config.php';
+require_once __DIR__ . '/src/products.php';
 $products = load_products();
 ?>
 <!DOCTYPE html>
@@ -13,7 +13,7 @@ $products = load_products();
   <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body class="cart-page">
-  <?php include __DIR__ . '/../src/components/header.php'; ?>
+  <?php include __DIR__ . '/src/components/header.php'; ?>
 
   <main class="container">
     <section class="page-header">
@@ -78,7 +78,7 @@ $products = load_products();
     </div>
   </div>
 
-  <?php include __DIR__ . '/../src/components/footer.php'; ?>
+  <?php include __DIR__ . '/src/components/footer.php'; ?>
   <script src="/assets/js/app.js"></script>
 </body>
 </html>

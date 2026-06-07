@@ -2,9 +2,9 @@
 // Digital file delivery endpoint
 // Verifies purchase via Stripe session, then serves the file
 
-require_once __DIR__ . '/../src/config.php';
-require_once __DIR__ . '/../src/stripe.php';
-require_once __DIR__ . '/../src/products.php';
+require_once __DIR__ . '/src/config.php';
+require_once __DIR__ . '/src/stripe.php';
+require_once __DIR__ . '/src/products.php';
 
 $session_id = $_GET['session'] ?? '';
 $product_slug = $_GET['product'] ?? '';

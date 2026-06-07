@@ -3,8 +3,8 @@
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
-require_once __DIR__ . '/../../src/config.php';
-require_once __DIR__ . '/../../src/products.php';
+require_once __DIR__ . '/../src/config.php';
+require_once __DIR__ . '/../src/products.php';
 
 $all = load_products();
 

@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../src/config.php';
+require_once __DIR__ . '/src/config.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +11,7 @@ require_once __DIR__ . '/../src/config.php';
   <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body class="about-page">
-  <?php include __DIR__ . '/../src/components/header.php'; ?>
+  <?php include __DIR__ . '/src/components/header.php'; ?>
 
   <main class="container">
     <section class="about-content">
@@ -82,7 +82,7 @@ require_once __DIR__ . '/../src/config.php';
     </section>
   </main>
 
-  <?php include __DIR__ . '/../src/components/footer.php'; ?>
+  <?php include __DIR__ . '/src/components/footer.php'; ?>
   <script src="/assets/js/app.js"></script>
 </body>
 </html>

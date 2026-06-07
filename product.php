@@ -1,13 +1,13 @@
 <?php
-require_once __DIR__ . '/../src/config.php';
-require_once __DIR__ . '/../src/products.php';
+require_once __DIR__ . '/src/config.php';
+require_once __DIR__ . '/src/products.php';
 
 $slug = $_GET['slug'] ?? '';
 $product = get_product_by_slug($slug);
 
 if (!$product) {
   http_response_code(404);
-  require __DIR__ . '/../src/components/header.php';
+  require __DIR__ . '/src/components/header.php';
   echo '<main class="container"><section class="error-page"><pre class="ascii-art">';
   echo '  (  )   (  )';
   echo "\n   ( ) ( )";
@@ -18,7 +18,7 @@ if (!$product) {
   echo "\n     / \\";
   echo "\n  [product not found]";
   echo '</pre><a href="/shop.php" class="btn primary">← back to shop</a></section></main>';
-  require __DIR__ . '/../src/components/footer.php';
+  require __DIR__ . '/src/components/footer.php';
   exit;
 }
 
@@ -39,7 +39,7 @@ $features = $product['features'] ?? [];
   <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body class="product-page">
-  <?php include __DIR__ . '/../src/components/header.php'; ?>
+  <?php include __DIR__ . '/src/components/header.php'; ?>
 
   <main class="container product-detail">
     <nav class="breadcrumb">
@@ -158,7 +158,7 @@ $features = $product['features'] ?? [];
     </div>
   </main>
 
-  <?php include __DIR__ . '/../src/components/footer.php'; ?>
+  <?php include __DIR__ . '/src/components/footer.php'; ?>
   <script src="/assets/js/app.js"></script>
 </body>
 </html>

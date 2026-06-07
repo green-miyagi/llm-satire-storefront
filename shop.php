@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../src/config.php';
-require_once __DIR__ . '/../src/products.php';
+require_once __DIR__ . '/src/config.php';
+require_once __DIR__ . '/src/products.php';
 
 $products = load_products();
 $category = $_GET['category'] ?? '';
@@ -28,7 +28,7 @@ if ($search) {
   <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body class="shop-page">
-  <?php include __DIR__ . '/../src/components/header.php'; ?>
+  <?php include __DIR__ . '/src/components/header.php'; ?>
 
   <main class="container">
     <section class="page-header">
@@ -99,7 +99,7 @@ if ($search) {
     </section>
   </main>
 
-  <?php include __DIR__ . '/../src/components/footer.php'; ?>
+  <?php include __DIR__ . '/src/components/footer.php'; ?>
   <script src="/assets/js/app.js"></script>
 </body>
 </html>
