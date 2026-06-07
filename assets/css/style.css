@@ -182,47 +182,7 @@ body::before {
   overflow: hidden;
 }
 
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background:
-    radial-gradient(circle at 20% 50%, rgba(0,255,65,0.03) 0%, transparent 50%),
-    radial-gradient(circle at 80% 50%, rgba(255,176,0,0.02) 0%, transparent 50%);
-  pointer-events: none;
-}
-
-/* faint schematic orbit ring — bottom right */
-.hero::after {
-  content: '';
-  position: absolute;
-  width: 320px;
-  height: 320px;
-  right: -100px;
-  bottom: -60px;
-  border-radius: 50%;
-  border: 0.5px solid rgba(255,255,255,0.035);
-  box-shadow: 0 0 60px rgba(255,255,255,0.01);
-  pointer-events: none;
-}
-
-/* 6 terminal-style star dots — background constellation */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  box-shadow:
-    15vw 22vh 0.5px 0 rgba(255,255,255,0.06),
-    27vw 18vh 0.5px 0 rgba(255,255,255,0.05),
-    23vw 30vh 0.5px 0 rgba(255,255,255,0.04),
-    82vw 12vh 0.5px 0 rgba(0,255,65,0.04),
-    90vw 25vh 0.5px 0 rgba(0,255,65,0.03),
-    75vw 70vh 0.5px 0 rgba(255,255,255,0.04);
-}
-
-.hero-content { position: relative; z-index: 1; }
+.hero-content { position: relative; }
 
 .hero-ascii {
   font-size: clamp(0.5rem, 1.5vw, 0.85rem);
