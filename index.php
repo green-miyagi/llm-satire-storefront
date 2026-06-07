@@ -20,10 +20,10 @@ $featured = array_slice($products, 0, 4);
   <main>
     <section class="hero">
       <!-- terminal-native space elements: text characters, not shapes -->
-      <span class="space-planet" aria-hidden="true">O</span>
-      <span class="space-star-1" aria-hidden="true">*</span>
-      <span class="space-star-2" aria-hidden="true">*</span>
-      <span class="space-star-3" aria-hidden="true">*</span>
+      <span class="space-planet" aria-hidden="true">○</span>
+      <span class="space-star-1" aria-hidden="true">✦</span>
+      <span class="space-star-2" aria-hidden="true">✦</span>
+      <span class="space-star-3" aria-hidden="true">✦</span>
 
       <div class="hero-content">
         <pre class="hero-ascii glow">

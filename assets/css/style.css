@@ -39,9 +39,8 @@ body {
   flex-direction: column;
   -webkit-font-smoothing: antialiased;
 }
-/* one star, barely there — only on screens wide enough to have room */
-/* ── subtle space atmosphere ── */
-/* nebula glow — like light pollution from a distant star field */
+
+/* faint depth glow — like distant starlight on a dark horizon */
 body::before {
   content: '';
   position: fixed;
@@ -49,55 +48,29 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 400px 300px at 70% 15%, rgba(0, 255, 65, 0.035) 0%, transparent 70%),
-    radial-gradient(ellipse 350px 250px at 20% 80%, rgba(68, 255, 255, 0.025) 0%, transparent 70%);
+    radial-gradient(ellipse 500px 300px at 75% 15%, rgba(0, 255, 65, 0.03) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 400px at 15% 85%, rgba(68, 255, 255, 0.02) 0%, transparent 70%);
 }
-/* sparse star chart dots + faint orbit ring */
+
+/* a few sparse star dots + faint orbit ring peeking from bottom-left */
 body::after {
   content: '';
   position: fixed;
-  width: 300px;
-  height: 300px;
-  left: -80px;
-  bottom: -80px;
+  width: 280px;
+  height: 280px;
+  left: -70px;
+  bottom: -70px;
   border-radius: 50%;
-  border: 1px solid rgba(0, 255, 65, 0.04);
+  border: 1px solid rgba(0, 255, 65, 0.035);
   box-shadow:
-    62vw 28vh 0 0 rgba(255,255,255,0.09),
-    18vw 58vh 0 0 rgba(255,255,255,0.07),
-    48vw 12vh 0 0 rgba(255,255,255,0.06),
-    75vw 88vh 0 0 rgba(0, 255, 65, 0.05),
-    0 0 40px rgba(0, 255, 65, 0.02);
+    65vw 25vh 0 0 rgba(255,255,255,0.08),
+    20vw 60vh 0 0 rgba(255,255,255,0.06),
+    50vw 15vh 0 0 rgba(255,255,255,0.05),
+    0 0 35px rgba(0, 255, 65, 0.015);
   z-index: -1;
   pointer-events: none;
 }
-
-/* ── deep space atmosphere ── */
-/* faint radial to suggest depth, not decoration */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: radial-gradient(ellipse 800px 500px at 80% 20%, rgba(0,255,65,0.02) 0%, transparent 60%);
-}
-
-/* tiny star chart — 6 dots, very faint, like a terminal star map */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  box-shadow:
-    82vw 18vh 0 0 rgba(255,255,255,0.09),
-    88vw 22vh 0 0 rgba(255,255,255,0.06),
-    76vw 30vh 0 0 rgba(255,255,255,0.07),
-    90vw 14vh 0 0 rgba(255,255,255,0.05),
-    5vw 12vh 0 0 rgba(255,255,255,0.06),
-    10vw 20vh 0 0 rgba(255,255,255,0.04);
-}
+@media (max-width: 768px) { body::before, body::after { display: none; } }
 
 /* ── buttons ── */
 .btn {
@@ -237,44 +210,7 @@ body::after {
   opacity: 0.05;
 }
 
-/* faint satellite orbit ring — top left */
-.hero::before {
-  content: '';
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  left: -120px;
-  top: -120px;
-  border-radius: 50%;
-  border: 1px solid rgba(0,255,65,0.04);
-  pointer-events: none;
-}
-
-/* faint atmospheric washes — like light pollution through a dark room */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 50%, rgba(0,255,65,0.03) 0%, transparent 50%),
-    radial-gradient(circle at 80% 50%, rgba(255,176,0,0.02) 0%, transparent 50%);
-  pointer-events: none;
-}
-
-/* schematic orbit ring — bottom right, like a radar display */
-.hero::after {
-  content: '';
-  position: absolute;
-  width: 320px;
-  height: 320px;
-  right: -100px;
-  bottom: -60px;
-  border-radius: 50%;
-  border: 0.5px solid rgba(255,255,255,0.04);
-  pointer-events: none;
-}
-
-.hero-content { position: relative; z-index: 1; }
+.hero-content { position: relative; }
 
 .hero-ascii {
   font-size: clamp(0.5rem, 1.5vw, 0.85rem);
