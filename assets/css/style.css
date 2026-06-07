@@ -38,6 +38,62 @@ body {
   display: flex;
   flex-direction: column;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ── space background ── */
+/* faint nebula glow */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    /* distant nebula — top right */
+    radial-gradient(ellipse 600px 400px at 85% 15%, rgba(0, 255, 65, 0.03) 0%, transparent 70%),
+    /* faint warm nebula — bottom left */
+    radial-gradient(ellipse 500px 500px at 15% 85%, rgba(255, 176, 0, 0.02) 0%, transparent 70%),
+    /* cold nebula — center right */
+    radial-gradient(ellipse 300px 600px at 70% 50%, rgba(68, 255, 255, 0.015) 0%, transparent 70%);
+}
+
+/* ── starfield ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* multiple box-shadows = thousands of tiny stars */
+  box-shadow:
+    24vw 8vh 0 0 rgba(255,255,255,0.25),
+    68vw 12vh 0 0 rgba(255,255,255,0.18),
+    42vw 28vh 0 0 rgba(255,255,255,0.30),
+    85vw 35vh 0 0 rgba(255,255,255,0.15),
+    12vw 45vh 0 0 rgba(255,255,255,0.22),
+    55vw 52vh 0 0 rgba(255,255,255,0.10),
+    90vw 60vh 0 0 rgba(255,255,255,0.20),
+    5vw 72vh 0 0 rgba(255,255,255,0.25),
+    35vw 80vh 0 0 rgba(255,255,255,0.12),
+    75vw 90vh 0 0 rgba(255,255,255,0.18),
+    15vw 15vh 2px 0 rgba(255,255,255,0.08),
+    92vw 50vh 2px 0 rgba(255,255,255,0.06),
+    48vw 65vh 2px 0 rgba(255,255,255,0.07),
+    60vw 18vh 2px 0 rgba(0,255,65,0.08),
+    30vw 95vh 2px 0 rgba(255,176,0,0.06),
+    8vw 30vh 1px 0 rgba(255,255,255,0.20),
+    78vw 42vh 1px 0 rgba(255,255,255,0.15),
+    50vw 5vh 1px 0 rgba(255,255,255,0.12),
+    20vw 58vh 1px 0 rgba(255,255,255,0.18),
+    95vw 15vh 1px 0 rgba(255,255,255,0.10);
+  animation: twinkle 4s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
 }
 
 a { color: var(--green); text-decoration: none; transition: opacity .2s; }
@@ -160,6 +216,36 @@ pre.ascii-art {
   padding: 4rem 1.5rem;
   position: relative;
   overflow: hidden;
+}
+
+/* distant planet — top left */
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  left: -30px;
+  top: 10%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(68, 255, 255, 0.08), rgba(0, 255, 65, 0.03) 60%, transparent 80%);
+  box-shadow: 0 0 60px rgba(0, 255, 65, 0.04);
+  pointer-events: none;
+}
+
+/* faint ringed planet — bottom right */
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  right: -60px;
+  bottom: 5%;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 80px rgba(255, 176, 0, 0.03), 0 0 0 1px rgba(255, 176, 0, 0.04) inset;
+  background:
+    linear-gradient(170deg, transparent 40%, rgba(255, 176, 0, 0.06) 42%, rgba(255, 176, 0, 0.04) 48%, transparent 50%),
+    radial-gradient(circle at 30% 30%, rgba(255, 176, 0, 0.05), rgba(255, 68, 102, 0.02) 50%, transparent 70%);
 }
 
 .hero::before {
