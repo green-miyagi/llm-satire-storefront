@@ -102,6 +102,22 @@ body::before {
   background: radial-gradient(ellipse 800px 500px at 80% 20%, rgba(0,255,65,0.02) 0%, transparent 60%);
 }
 
+/* tiny star chart — 6 dots, very faint, like a terminal star map */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  box-shadow:
+    82vw 18vh 0 0 rgba(255,255,255,0.09),
+    88vw 22vh 0 0 rgba(255,255,255,0.06),
+    76vw 30vh 0 0 rgba(255,255,255,0.07),
+    90vw 14vh 0 0 rgba(255,255,255,0.05),
+    5vw 12vh 0 0 rgba(255,255,255,0.06),
+    10vw 20vh 0 0 rgba(255,255,255,0.04);
+}
+
 /* ── buttons ── */
 .btn {
   display: inline-block;
