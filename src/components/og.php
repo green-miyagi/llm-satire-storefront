@@ -17,13 +17,17 @@
 <meta property="og:description" content="a satire store for ai and llm culture. digital artifacts that celebrate the beautiful absurdity of talking to machines.">
 <meta name="twitter:description" content="a satire store for ai and llm culture. digital artifacts that celebrate the beautiful absurdity of talking to machines.">
 <?php endif; ?>
-<?php if (isset($og_image) && $og_image): ?>
-<meta property="og:image" content="<?= htmlspecialchars($og_image) ?>">
-<meta name="twitter:image" content="<?= htmlspecialchars($og_image) ?>">
-<?php else: ?>
-<meta property="og:image" content="/assets/images/favicon.svg">
-<meta name="twitter:image" content="/assets/images/favicon.svg">
-<?php endif; ?>
+<?php
+$site_url_og = getenv('SITE_URL') ?: 'https://aillm.space';
+$og_img_abs = '';
+if (isset($og_image) && $og_image) {
+  $og_img_abs = str_starts_with($og_image, 'http') ? $og_image : rtrim($site_url_og, '/') . '/' . ltrim($og_image, '/');
+} else {
+  $og_img_abs = rtrim($site_url_og, '/') . '/assets/images/favicon.svg';
+}
+?>
+<meta property="og:image" content="<?= htmlspecialchars($og_img_abs) ?>">
+<meta name="twitter:image" content="<?= htmlspecialchars($og_img_abs) ?>">
 <?php if (isset($og_url) && $og_url): ?>
 <meta property="og:url" content="<?= htmlspecialchars($og_url) ?>">
 <?php endif; ?>

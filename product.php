@@ -63,7 +63,7 @@ $features = $product['features'] ?? [];
             if (!file_exists($galleryPath)) continue;
           ?>
           <div class="gallery-item">
-            <img src="/assets/images/<?= $img ?>.png" alt="<?= htmlspecialchars($name) ?> — <?= htmlspecialchars($img) ?>" class="gallery-image" loading="lazy">
+            <img src="/assets/images/<?= $img ?>.png" alt="<?= htmlspecialchars($name) ?> — <?= htmlspecialchars($img) ?>" width="1024" height="1024" class="gallery-image" loading="lazy">
           </div>
           <?php endforeach; ?>
         </div>
@@ -71,7 +71,7 @@ $features = $product['features'] ?? [];
         $imgPath = __DIR__ . '/assets/images/' . $product['image'] . '.png';
         if (file_exists($imgPath)):
         ?>
-        <img src="/assets/images/<?= $product['image'] ?>.png" alt="<?= htmlspecialchars($name) ?>" class="product-image-detail">
+        <img src="/assets/images/<?= $product['image'] ?>.png" alt="<?= htmlspecialchars($name) ?>" width="1024" height="1024" class="product-image-detail">
         <?php endif; endif; ?>
         <div class="model-card-frame">
           <div class="model-card-header">
@@ -191,7 +191,7 @@ $features = $product['features'] ?? [];
         <a href="/product/<?= urlencode($rSlug) ?>" class="related-card">
           <div class="related-card-image">
             <?php if (!empty($rp['image']) && file_exists(__DIR__ . '/assets/images/' . $rp['image'] . '.png')): ?>
-            <img src="/assets/images/<?= $rp['image'] ?>.png" alt="<?= htmlspecialchars($rName) ?>" loading="lazy">
+            <img src="/assets/images/<?= $rp['image'] ?>.png" alt="<?= htmlspecialchars($rName) ?>" width="1024" height="1024" loading="lazy">
             <?php else: ?>
             <div class="related-card-placeholder">⎔</div>
             <?php endif; ?>

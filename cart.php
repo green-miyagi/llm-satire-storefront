@@ -30,6 +30,13 @@ $products = load_products();
       <div class="loading">loading cart...</div>
     </div>
 
+    <noscript>
+      <div class="noscript-notice">
+        <p>your cart requires javascript to display and checkout.</p>
+        <p>please enable javascript or email us your order directly.</p>
+      </div>
+    </noscript>
+
     <div class="cart-empty" id="cart-empty" style="display:none;">
       <pre class="ascii-art">
   ┌──────────────────────┐

@@ -110,7 +110,7 @@
 
         html += '<div class="cart-item">';
         if (p && p.image) {
-          html += '  <img src="/assets/images/' + esc(p.image) + '.png" alt="" class="cart-item-image" onerror="this.style.display=\'none\'">';
+          html += '  <img src="/assets/images/' + esc(p.image) + '.png" alt="" width="1024" height="1024" class="cart-item-image" loading="lazy" onerror="this.style.display=\'none\'">';
         }
         html += '  <div class="cart-item-info">';
         html += '    <div class="cart-item-name">' + esc(name) + '</div>';

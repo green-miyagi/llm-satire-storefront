@@ -77,22 +77,4 @@ function retrieve_checkout_session(string $session_id): array
     return stripe_api('GET', "/checkout/sessions/$session_id?expand[]=line_items");
 }
 
-// simple product image placeholder — returns an svg
-function product_placeholder_svg(string $product_id): string
-{
-    $svg = <<<SVG
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
-  <rect width="600" height="600" fill="#0d0d0d"/>
-  <rect x="50" y="50" width="500" height="500" rx="4" fill="none" stroke="#00ff41" stroke-width="1" opacity="0.3"/>
-  <line x1="50" y1="100" x2="550" y2="100" stroke="#00ff41" stroke-width="1" opacity="0.15"/>
-  <circle cx="300" cy="280" r="80" fill="none" stroke="#00ff41" stroke-width="1" opacity="0.4"/>
-  <circle cx="300" cy="280" r="40" fill="none" stroke="#ffb000" stroke-width="1" opacity="0.3"/>
-  <line x1="220" y1="280" x2="380" y2="280" stroke="#00ff41" stroke-width="1" opacity="0.2"/>
-  <line x1="300" y1="200" x2="300" y2="360" stroke="#00ff41" stroke-width="1" opacity="0.2"/>
-  <text x="300" y="440" text-anchor="middle" font-family="monospace" font-size="14" fill="#00ff41" opacity="0.6">[ {$product_id} ]</text>
-  <text x="300" y="470" text-anchor="middle" font-family="monospace" font-size="10" fill="#666" opacity="0.4">digital download</text>
-</svg>
-SVG;
 
-    return $svg;
-}

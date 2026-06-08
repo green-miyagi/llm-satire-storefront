@@ -31,7 +31,7 @@
       <span class="footer-sep">·</span>
       <a href="/about.php" class="footer-link">about</a>
       <span class="footer-sep">·</span>
-      <a href="https://github.com/green-miyagi/llm-satire-storefront" class="footer-link" target="_blank">github</a>
+      <a href="https://github.com/green-miyagi/llm-satire-storefront" class="footer-link" target="_blank" rel="noopener noreferrer">github</a>
       <span class="footer-sep">·</span>
       <span class="footer-ssh">ssh: shop.aillm.space -p 2222</span>
     </div>

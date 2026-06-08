@@ -43,6 +43,5 @@ http_response_code(404);
     <p><a href="/shop.php" class="btn primary">← return to shop</a></p>
   </main>
   <?php include __DIR__ . '/src/components/footer.php'; ?>
-  <script src="/assets/js/app.js?v=<?= filemtime(__DIR__.'/assets/js/app.js') ?>"></script>
 </body>
 </html>
