@@ -277,6 +277,7 @@ body::after {
   transition: all .25s;
   overflow: hidden;
   color: var(--text);
+  position: relative;
 }
 .product-card:hover {
   border-color: var(--green);
@@ -1300,10 +1301,6 @@ p a:hover, li a:hover {
 .product-card-link:hover .product-name {
   color: var(--green);
 }
-.product-card {
-  position: relative;
-}
-
 /* ── card add button ── */
 .card-add-btn {
   position: absolute;

@@ -105,10 +105,10 @@
         html += '    <div class="cart-item-price">' + esc(price) + '</div>';
         html += '  </div>';
         html += '  <div class="cart-item-actions">';
-        html += '    <div class="cart-qty-controls">';
-        html += '      <button class="cart-qty-btn cart-qty-minus" data-slug="' + esc(item.slug) + '" data-delta="-1">−</button>';
-        html += '      <span class="cart-item-qty">' + qty + '</span>';
-        html += '      <button class="cart-qty-btn cart-qty-plus" data-slug="' + esc(item.slug) + '" data-delta="1">+</button>';
+        html += '    <div class="cart-qty-wrap">';
+        html += '      <button class="cart-qty-btn" data-slug="' + esc(item.slug) + '" data-delta="-1">−</button>';
+        html += '      <span class="cart-qty-num">' + qty + '</span>';
+        html += '      <button class="cart-qty-btn" data-slug="' + esc(item.slug) + '" data-delta="1">+</button>';
         html += '    </div>';
         html += '    <button class="cart-item-remove" data-slug="' + esc(item.slug) + '">remove</button>';
         html += '  </div>';
@@ -236,12 +236,12 @@
           }
         } catch (e) { /* fall through */ }
       }
-      alert('checkout error. the model might be overloaded. try again?');
+      showToast('checkout error. the model might be overloaded.', 'error');
     };
 
     xhr.onerror = function () {
       if (overlay) overlay.style.display = 'none';
-      alert('network error. check your connection and try again.');
+      showToast('network error. check your connection and try again.', 'error');
     };
 
     xhr.send(JSON.stringify({ items: cart }));
@@ -251,6 +251,7 @@
 
   function addToCart(slug) {
     addItemToCart(slug);
+    showToast('added to context window');
     var btn = document.querySelector('.add-to-cart-btn');
     if (btn) {
       var orig = btn.textContent;
@@ -267,6 +268,7 @@
 
   function addToCartFromCard(slug, btnEl) {
     addItemToCart(slug);
+    showToast('added to context window');
     var orig = btnEl.textContent;
     btnEl.textContent = '✓';
     btnEl.disabled = true;
@@ -413,6 +415,16 @@
     if (hamBtn) {
       hamBtn.addEventListener('click', toggleMenu);
     }
+
+    // close hamburger menu on nav link click
+    document.querySelectorAll('.nav-link').forEach(function (link) {
+      link.addEventListener('click', function () {
+        var nav = document.querySelector('.nav-links');
+        if (nav && nav.classList.contains('nav-open')) {
+          nav.classList.remove('nav-open');
+        }
+      });
+    });
   });
 
   /* ── expose to inline onclick handlers ── */
