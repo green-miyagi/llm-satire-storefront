@@ -105,7 +105,11 @@
         html += '    <div class="cart-item-price">' + esc(price) + '</div>';
         html += '  </div>';
         html += '  <div class="cart-item-actions">';
-        html += '    <span class="cart-item-qty">×' + qty + '</span>';
+        html += '    <div class="cart-qty-controls">';
+        html += '      <button class="cart-qty-btn cart-qty-minus" data-slug="' + esc(item.slug) + '" data-delta="-1">−</button>';
+        html += '      <span class="cart-item-qty">' + qty + '</span>';
+        html += '      <button class="cart-qty-btn cart-qty-plus" data-slug="' + esc(item.slug) + '" data-delta="1">+</button>';
+        html += '    </div>';
         html += '    <button class="cart-item-remove" data-slug="' + esc(item.slug) + '">remove</button>';
         html += '  </div>';
         html += '</div>';
@@ -120,11 +124,21 @@
         document.getElementById('cart-tokens').textContent = '~' + totalTokens + 'k tokens';
       }
 
+      // wire quantity +/- buttons
+      container.querySelectorAll('.cart-qty-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var slug = btn.getAttribute('data-slug');
+          var delta = parseInt(btn.getAttribute('data-delta'), 10);
+          updateQuantity(slug, delta);
+        });
+      });
+
       // wire remove buttons
       container.querySelectorAll('.cart-item-remove').forEach(function (btn) {
         btn.addEventListener('click', function () {
           var slug = btn.getAttribute('data-slug');
-          removeItem(slug); // actually remove from localStorage
+          removeItem(slug);
+          showToast('removed from context window');
           renderCart();
         });
       });
@@ -300,6 +314,52 @@
     }, totalDelay + 500);
   }
 
+  /* ── toast notification system ── */
+
+  function showToast(msg, type) {
+    var container = document.getElementById('toast-container');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'toast-container';
+      document.body.appendChild(container);
+    }
+    var t = document.createElement('div');
+    t.className = 'toast' + (type === 'error' ? ' toast-error' : '');
+    t.textContent = msg;
+    container.appendChild(t);
+    setTimeout(function () { t.classList.add('toast-visible'); }, 10);
+    setTimeout(function () {
+      t.classList.remove('toast-visible');
+      setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 300);
+    }, 3000);
+  }
+
+  /* ── update item quantity ── */
+
+  function updateQuantity(slug, delta) {
+    var cart = getCart();
+    var item = cart.find(function (i) { return i.slug === slug; });
+    if (!item) return;
+    var newQty = (item.quantity || 1) + delta;
+    if (newQty <= 0) {
+      removeItem(slug);
+      showToast('removed from context window');
+    } else {
+      item.quantity = newQty;
+      saveCart(cart);
+      updateCartBadge();
+      showToast(delta > 0 ? '+1 in context window' : '-1 removed');
+    }
+    renderCart();
+  }
+
+  /* ── hamburger menu toggle ── */
+
+  function toggleMenu() {
+    var nav = document.querySelector('.nav-links');
+    if (nav) nav.classList.toggle('nav-open');
+  }
+
   /* ── helpers ── */
 
   function esc(s) {
@@ -339,8 +399,7 @@
         var status = newsForm.querySelector('.newsletter-status');
         if (!input || !input.value.trim()) return;
         var email = input.value.trim();
-        // simple mailto fallback — no backend to post to yet
-        status.textContent = '✓ added to training set';
+        status.textContent = 'added to training set';
         status.style.color = 'var(--green)';
         input.value = '';
         setTimeout(function () {
@@ -348,11 +407,19 @@
         }, 3000);
       });
     }
+
+    // hamburger toggle
+    var hamBtn = document.getElementById('ham-btn');
+    if (hamBtn) {
+      hamBtn.addEventListener('click', toggleMenu);
+    }
   });
 
   /* ── expose to inline onclick handlers ── */
   window.addToCart = addToCart;
   window.addToCartFromCard = addToCartFromCard;
   window.handleCheckout = handleCheckout;
+  window.updateQuantity = updateQuantity;
+  window.toggleMenu = toggleMenu;
 
 })();

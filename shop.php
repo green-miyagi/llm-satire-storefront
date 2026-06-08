@@ -84,32 +84,35 @@ if ($search) {
           $temp = $product['temperature'];
           $tokens = $product['token_price'];
         ?>
-        <a href="/product/<?= urlencode($slug) ?>" class="product-card">
-          <div class="product-card-visual">
-            <?php
-            $imgPath = __DIR__ . '/assets/images/' . ($product['image'] ?? '') . '.png';
-            if (!empty($product['image']) && file_exists($imgPath)):
-            ?>
-            <img src="/assets/images/<?= $product['image'] ?>.png" alt="<?= htmlspecialchars($name) ?>" class="product-card-image" loading="lazy">
-            <?php else: ?>
-            <div class="product-card-grid">
-              <div class="grid-dot"></div><div class="grid-dot"></div><div class="grid-dot"></div>
-              <div class="grid-dot"></div><div class="grid-cell"><?= htmlspecialchars($product['category'][0] ?? '?') ?></div><div class="grid-dot"></div>
-              <div class="grid-dot"></div><div class="grid-dot"></div><div class="grid-dot"></div>
-          </div>
-            <?php endif; ?>
-            <div class="product-type-badge"><?= $product['type'] ?? 'pdf' ?></div>
-          </div>
-          <div class="product-card-body">
-            <h3 class="product-name"><?= htmlspecialchars($name) ?></h3>
-            <p class="product-desc"><?= htmlspecialchars(substr($product['description'], 0, 100)) ?>…</p>
-            <div class="product-meta">
-              <span class="product-price"><?= $price ?></span>
-              <span class="product-tokens">~<?= $tokens ?> tokens</span>
-              <span class="product-temp">τ=<?= $temp ?></span>
+        <div class="product-card">
+          <a href="/product/<?= urlencode($slug) ?>" class="product-card-link">
+            <div class="product-card-visual">
+              <?php
+              $imgPath = __DIR__ . '/assets/images/' . ($product['image'] ?? '') . '.png';
+              if (!empty($product['image']) && file_exists($imgPath)):
+              ?>
+              <img src="/assets/images/<?= $product['image'] ?>.png" alt="<?= htmlspecialchars($name) ?>" class="product-card-image" loading="lazy">
+              <?php else: ?>
+              <div class="product-card-grid">
+                <div class="grid-dot"></div><div class="grid-dot"></div><div class="grid-dot"></div>
+                <div class="grid-dot"></div><div class="grid-cell"><?= htmlspecialchars($product['category'][0] ?? '?') ?></div><div class="grid-dot"></div>
+                <div class="grid-dot"></div><div class="grid-dot"></div><div class="grid-dot"></div>
             </div>
-          </div>
-        </a>
+              <?php endif; ?>
+              <div class="product-type-badge"><?= $product['type'] ?? 'pdf' ?></div>
+            </div>
+            <div class="product-card-body">
+              <h3 class="product-name"><?= htmlspecialchars($name) ?></h3>
+              <p class="product-desc"><?= htmlspecialchars(substr($product['description'], 0, 100)) ?>…</p>
+              <div class="product-meta">
+                <span class="product-price"><?= $price ?></span>
+                <span class="product-tokens">~<?= $tokens ?> tokens</span>
+                <span class="product-temp">τ=<?= $temp ?></span>
+              </div>
+            </div>
+          </a>
+          <button class="card-add-btn" data-slug="<?= htmlspecialchars($slug) ?>" onclick="addToCartFromCard('<?= htmlspecialchars($slug) ?>', this)">+ add</button>
+        </div>
         <?php endforeach; ?>
       <?php endif; ?>
     </section>
