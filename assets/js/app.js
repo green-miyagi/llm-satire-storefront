@@ -372,7 +372,7 @@
     setTimeout(function () {
       t.classList.remove('toast-visible');
       setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 300);
-    }, 3000);
+    }, 2000);
   }
 
   /* ── update item quantity ── */

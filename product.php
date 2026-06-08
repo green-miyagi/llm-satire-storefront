@@ -76,7 +76,7 @@ $features = $product['features'] ?? [];
         <div class="model-card-frame">
           <div class="model-card-header">
             <span class="model-label">model card</span>
-            <span class="model-version">v<?= rand(1,9) ?>.<?= rand(0,9) ?>.<wbr><?= rand(0,99) ?></span>
+            <span class="model-version">v<?= abs(crc32($slug)) % 9 + 1 ?>.<?= abs(crc32($slug . '_minor')) % 10 ?>.<wbr><?= abs(crc32($slug . '_patch')) % 100 ?></span>
           </div>
           <div class="model-card-body">
             <div class="model-name"><?= htmlspecialchars($name) ?></div>
