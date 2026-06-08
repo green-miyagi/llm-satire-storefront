@@ -109,6 +109,9 @@
         totalTokens += tokens * qty;
 
         html += '<div class="cart-item">';
+        if (p && p.image) {
+          html += '  <img src="/assets/images/' + esc(p.image) + '.png" alt="" class="cart-item-image" onerror="this.style.display=\'none\'">';
+        }
         html += '  <div class="cart-item-info">';
         html += '    <div class="cart-item-name">' + esc(name) + '</div>';
         html += '    <div class="cart-item-price">' + esc(price) + '</div>';
@@ -460,6 +463,15 @@
           nav.classList.remove('nav-open');
         }
       });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        var nav = document.querySelector('.nav-links');
+        if (nav && nav.classList.contains('nav-open')) {
+          nav.classList.remove('nav-open');
+        }
+      }
     });
   });
 
