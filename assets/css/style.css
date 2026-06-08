@@ -250,7 +250,6 @@ body::after {
 
 .terminal-output .prompt { color: var(--green); }
 .terminal-output .output { color: var(--text-muted); }
-.cursor-blink { animation: blink 1s step-end infinite; }
 
 @keyframes blink {
   50% { opacity: 0; }
@@ -866,27 +865,6 @@ body::after {
 
 .text-center { text-align: center; }
 
-/* 404 page fallback button — same as .btn but for inline <a> */
-.btn-buy {
-  display: inline-block;
-  font-family: var(--font);
-  font-size: 0.9rem;
-  padding: 0.6rem 1.4rem;
-  border: 1px solid var(--border-light);
-  background: transparent;
-  color: var(--text);
-  cursor: pointer;
-  transition: all .2s;
-  text-align: center;
-  border-radius: var(--radius);
-  line-height: 1.4;
-  text-decoration: none;
-}
-.btn-buy:hover {
-  border-color: var(--green);
-  color: var(--green);
-}
-
 /* glow class for ASCII art accents (index.php hero, checkout) */
 .glow {
   text-shadow: var(--glow-green);
@@ -1103,24 +1081,6 @@ p a:hover, li a:hover {
 /* ── terminal typing animation ── */
 #terminal-type {
   visibility: hidden;
-}
-
-#terminal-type .line {
-  display: block;
-  line-height: 1.8;
-}
-
-#terminal-type .line .prompt {
-  color: var(--green);
-}
-
-#terminal-type .line.output {
-  color: var(--text-muted);
-}
-
-/* inline cart data script — hidden */
-.cart-data-script {
-  display: none;
 }
 
 /* ── category filter pills ── */
@@ -1414,4 +1374,19 @@ p a:hover, li a:hover {
 
   .site-header { position: relative; } /* so .nav-links positions below */
   .header-nav { flex-wrap: wrap; }
+}
+
+/* ── noscript fallback ── */
+.noscript-notice {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  margin: 2rem 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-alt);
+}
+.noscript-notice p {
+  margin: 0.5rem 0;
+  color: var(--text-dim);
+  font-size: 0.9rem;
 }
