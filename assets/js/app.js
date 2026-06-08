@@ -204,7 +204,7 @@
 
     slugs.forEach(function (slug) {
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', '/api/product-data.json?slug=' + encodeURIComponent(slug), true);
+      xhr.open('GET', '/api/products.json.php?slug=' + encodeURIComponent(slug), true);
       xhr.onload = function () {
         if (xhr.status === 200) {
           try {

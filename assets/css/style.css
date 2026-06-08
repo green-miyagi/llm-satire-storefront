@@ -411,6 +411,9 @@ body::after {
   border-color: var(--green);
   color: var(--green);
 }
+/* result count after search */
+.search-count { margin-top: 0.5rem; }
+
 .search-clear {
   color: var(--text-dim);
   font-size: 1.2rem;
@@ -535,7 +538,7 @@ body::after {
 .cart-item-name { font-size: 0.9rem; }
 .cart-item-price { color: var(--green); font-size: 0.85rem; margin-top: 0.25rem; }
 .cart-item-actions { display: flex; align-items: center; gap: 1rem; }
-.cart-item-qty { color: var(--text-muted); font-size: 0.85rem; }
+
 .cart-item-remove {
   background: none;
   border: 1px solid var(--border);
