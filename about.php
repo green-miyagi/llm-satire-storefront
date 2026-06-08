@@ -12,6 +12,7 @@ require_once __DIR__ . '/src/config.php';
   <?php
   $og_title = 'about / aillm satire store';
   $og_desc = 'model card for the aillm satire store — a satire store for ai and llm culture. digital artifacts celebrating the beautiful absurdity of talking to machines.';
+  $og_image = '/assets/images/luna-card.png';
   ?>
   <?php include __DIR__ . '/src/components/og.php'; ?>
 </head>

@@ -29,6 +29,7 @@ if ($search) {
   <?php
   $og_title = 'shop / aillm satire store';
   $og_desc = 'browse our collection of fine ai artifacts — digital downloads, poster art, and llm-themed ephemera.';
+  $og_image = '/assets/images/alignment-poster-1.png';
   ?>
   <?php include __DIR__ . '/src/components/og.php'; ?>
 </head>

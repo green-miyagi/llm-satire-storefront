@@ -769,6 +769,15 @@ body::after {
 .footer-link:hover { color: var(--green); }
 .footer-sep { color: var(--text-dim); font-size: 0.7rem; }
 .footer-ssh { color: var(--text-dim); font-size: 0.8rem; font-family: var(--font); }
+.footer-network {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.network-label { color: var(--text-dim); font-size: 0.7rem; opacity: 0.6; }
 .footer-subtle {
   margin-top: 1rem;
   color: var(--text-dim);

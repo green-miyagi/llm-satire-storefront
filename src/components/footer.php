@@ -35,6 +35,20 @@
       <span class="footer-sep">·</span>
       <span class="footer-ssh">ssh: shop.aillm.space -p 2222</span>
     </div>
+    <div class="footer-network">
+      <span class="network-label">⎔ network</span>
+      <a href="https://greenmiyagi.com" class="footer-link" target="_blank" rel="noopener noreferrer">greenmiyagi</a>
+      <span class="footer-sep">·</span>
+      <a href="https://ecodrop.space" class="footer-link" target="_blank" rel="noopener noreferrer">ecodrop</a>
+      <span class="footer-sep">·</span>
+      <a href="https://miyagiblog.space" class="footer-link" target="_blank" rel="noopener noreferrer">miyagiblog</a>
+      <span class="footer-sep">·</span>
+      <a href="https://texomaweb.space" class="footer-link" target="_blank" rel="noopener noreferrer">texomaweb</a>
+      <span class="footer-sep">·</span>
+      <a href="https://greenmiyagi.io" class="footer-link" target="_blank" rel="noopener noreferrer">gmiyagi.io</a>
+      <span class="footer-sep">·</span>
+      <a href="https://greenmiyagi.shop" class="footer-link" target="_blank" rel="noopener noreferrer">gmiyagi.shop</a>
+    </div>
     <p class="footer-subtle">prices subject to token volatility · no ai were harmed in the making of this store</p>
   </div>
 </footer>
