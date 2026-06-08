@@ -327,6 +327,44 @@
     }, 1500);
   }
 
+  /* ── terminal typing animation ── */
+
+  function typeTerminal() {
+    var el = document.getElementById('terminal-type');
+    if (!el) return;
+    var lines = Array.from(el.children);
+    var totalDelay = 0;
+    el.style.visibility = 'visible';
+    Array.from(el.children).forEach(function (child) { child.style.visibility = 'hidden'; });
+
+    lines.forEach(function (line, i) {
+      var text = line.textContent;
+      line.textContent = '';
+      line.style.visibility = 'visible';
+      var charDelay = 400 + (i * 600);
+
+      var j = 0;
+      function typeChar() {
+        if (j < text.length) {
+          line.textContent += text.charAt(j);
+          j++;
+          setTimeout(typeChar, 20 + Math.random() * 30);
+        }
+      }
+      setTimeout(typeChar, charDelay);
+      totalDelay = charDelay + text.length * 30;
+    });
+
+    // blink cursor after typing finishes
+    setTimeout(function () {
+      var cursor = document.querySelector('#terminal-type + .cursor-blink, .terminal-output .cursor-blink');
+      if (cursor) {
+        cursor.style.visibility = 'visible';
+        cursor.style.animation = 'blink 1s step-end infinite';
+      }
+    }, totalDelay + 500);
+  }
+
   /* ── toast notification system ── */
 
   function showToast(msg, type) {
@@ -396,6 +434,11 @@
     var checkoutBtn = document.getElementById('checkout-btn');
     if (checkoutBtn) {
       checkoutBtn.addEventListener('click', handleCheckout);
+    }
+
+    // terminal typing animation on home page
+    if (document.getElementById('terminal-type')) {
+      setTimeout(typeTerminal, 600);
     }
 
     // newsletter form handler
