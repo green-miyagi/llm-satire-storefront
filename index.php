@@ -142,6 +142,6 @@ $featured = array_slice($products, 0, 4);
   </main>
 
   <?php include __DIR__ . '/src/components/footer.php'; ?>
-  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/app.js?v=<?= filemtime(__DIR__.'/assets/js/app.js') ?>"></script>
 </body>
 </html>

@@ -254,12 +254,22 @@
       }, 250);
     }
 
+    // dismiss overlay on click (in case it gets stuck)
+    if (overlay) {
+      overlay.onclick = function (e) {
+        if (e.target === overlay) {
+          done();
+        }
+      };
+    }
+
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/api/create-checkout.php', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     function done() {
       if (overlay) overlay.style.display = 'none';
+      if (overlay) overlay.onclick = null;
       if (progressInterval) clearInterval(progressInterval);
     }
 
@@ -445,7 +455,7 @@
         input.value = '';
         setTimeout(function () {
           status.textContent = '';
-        }, 3000);
+        }, 2000);
       });
     }
 

@@ -85,6 +85,6 @@ $products = load_products();
 
   <?php include __DIR__ . '/src/components/footer.php'; ?>
   <script id="cart-product-data" type="application/json"><?= json_encode(load_products()) ?></script>
-  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/app.js?v=<?= filemtime(__DIR__.'/assets/js/app.js') ?>"></script>
 </body>
 </html>

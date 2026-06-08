@@ -16,7 +16,7 @@ http_response_code(404);
   ?>
   <?php include __DIR__ . '/src/components/og.php'; ?>
 </head>
-<body>
+<body class="error-page-body">
   <?php include __DIR__ . '/src/components/header.php'; ?>
   <main class="container error-page">
     <pre>

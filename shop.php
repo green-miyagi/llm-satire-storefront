@@ -47,6 +47,9 @@ if ($search) {
           <a href="/shop.php" class="search-clear">×</a>
         <?php endif; ?>
       </form>
+      <?php if ($search && !empty($products)): ?>
+        <p class="subtle search-count">found <?= count($products) ?> result<?= count($products) > 1 ? 's' : '' ?> for "<?= htmlspecialchars($search) ?>"</p>
+      <?php endif; ?>
 
       <div class="category-filters">
         <a href="/shop.php" class="filter-pill <?= !$category && !$search ? 'active' : '' ?>">all</a>
@@ -119,6 +122,6 @@ if ($search) {
   </main>
 
   <?php include __DIR__ . '/src/components/footer.php'; ?>
-  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/app.js?v=<?= filemtime(__DIR__.'/assets/js/app.js') ?>"></script>
 </body>
 </html>
