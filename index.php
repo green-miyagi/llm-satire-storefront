@@ -13,6 +13,7 @@ $featured = array_slice($products, 0, 4);
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
   <link rel="stylesheet" href="/assets/css/style.css?v=<?= filemtime(__DIR__.'/assets/css/style.css') ?>">
   <meta name="description" content="we love this stuff. we also think it's ridiculous. a satire store for ai and llm culture.">
+  <?php include __DIR__ . '/src/components/og.php'; ?>
 </head>
 <body class="home-page">
   <?php include __DIR__ . '/src/components/header.php'; ?>

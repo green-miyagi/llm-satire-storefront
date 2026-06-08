@@ -10,6 +10,11 @@ http_response_code(404);
   <title>404 / aillm satire</title>
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
   <link rel="stylesheet" href="/assets/css/style.css?v=<?= filemtime(__DIR__.'/assets/css/style.css') ?>">
+  <?php
+  $og_title = '404 / aillm satire — model not found';
+  $og_desc = 'the page you\'re looking for failed to load into context window. temperature of this page: τ = 0.0 (very certain it\'s lost).';
+  ?>
+  <?php include __DIR__ . '/src/components/og.php'; ?>
 </head>
 <body>
   <?php include __DIR__ . '/src/components/header.php'; ?>

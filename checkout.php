@@ -47,6 +47,11 @@ if ($order && isset($order['line_items']['data'])) {
   <title>checkout / aillm satire</title>
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
   <link rel="stylesheet" href="/assets/css/style.css?v=<?= filemtime(__DIR__.'/assets/css/style.css') ?>">
+  <?php
+  $og_title = $order ? 'thank you / aillm satire' : 'checkout / aillm satire';
+  $og_desc = $order ? 'your purchase has been added to the training set. download your products.' : 'complete your purchase at the aillm satire store.';
+  ?>
+  <?php include __DIR__ . '/src/components/og.php'; ?>
 </head>
 <body class="checkout-page">
   <?php include __DIR__ . '/src/components/header.php'; ?>

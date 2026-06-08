@@ -9,6 +9,11 @@ require_once __DIR__ . '/src/config.php';
   <title>about / aillm satire</title>
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
   <link rel="stylesheet" href="/assets/css/style.css?v=<?= filemtime(__DIR__.'/assets/css/style.css') ?>">
+  <?php
+  $og_title = 'about / aillm satire store';
+  $og_desc = 'model card for the aillm satire store — a satire store for ai and llm culture. digital artifacts celebrating the beautiful absurdity of talking to machines.';
+  ?>
+  <?php include __DIR__ . '/src/components/og.php'; ?>
 </head>
 <body class="about-page">
   <?php include __DIR__ . '/src/components/header.php'; ?>

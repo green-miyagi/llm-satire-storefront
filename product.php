@@ -37,6 +37,12 @@ $features = $product['features'] ?? [];
   <title><?= htmlspecialchars($name) ?> / aillm satire</title>
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
   <link rel="stylesheet" href="/assets/css/style.css?v=<?= filemtime(__DIR__.'/assets/css/style.css') ?>">
+  <?php
+  $og_title = $name . ' / aillm satire';
+  $og_desc = $desc;
+  $og_image = '/assets/images/' . $product['image'] . '.png';
+  ?>
+  <?php include __DIR__ . '/src/components/og.php'; ?>
 </head>
 <body class="product-page">
   <?php include __DIR__ . '/src/components/header.php'; ?>
@@ -163,6 +169,41 @@ $features = $product['features'] ?? [];
       </div>
     </div>
   </main>
+
+  <?php
+  $all = load_products();
+  $related = array_filter($all, function($p) use ($product) {
+    return ($p['category'] ?? '') === ($product['category'] ?? '')
+        && $p['slug'] !== $product['slug'];
+  });
+  $related = array_slice(array_values($related), 0, 4);
+  ?>
+  <?php if (!empty($related)): ?>
+  <section class="related-products container">
+    <h2 class="related-title">↗ similar artifacts</h2>
+    <div class="related-grid">
+      <?php foreach ($related as $rp):
+        $rSlug = $rp['slug'];
+        $rName = $rp['name'];
+        $rPrice = $rp['price_display'];
+      ?>
+      <a href="/product/<?= urlencode($rSlug) ?>" class="related-card">
+        <div class="related-card-image">
+          <?php if (!empty($rp['image']) && file_exists(__DIR__ . '/assets/images/' . $rp['image'] . '.png')): ?>
+          <img src="/assets/images/<?= $rp['image'] ?>.png" alt="<?= htmlspecialchars($rName) ?>" loading="lazy">
+          <?php else: ?>
+          <div class="related-card-placeholder">⎔</div>
+          <?php endif; ?>
+        </div>
+        <div class="related-card-body">
+          <span class="related-card-name"><?= htmlspecialchars($rName) ?></span>
+          <span class="related-card-price"><?= $rPrice ?></span>
+        </div>
+      </a>
+      <?php endforeach; ?>
+    </div>
+  </section>
+  <?php endif; ?>
 
   <?php include __DIR__ . '/src/components/footer.php'; ?>
   <script src="/assets/js/app.js"></script>

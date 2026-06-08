@@ -26,6 +26,11 @@ if ($search) {
   <title>shop / aillm satire</title>
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
   <link rel="stylesheet" href="/assets/css/style.css?v=<?= filemtime(__DIR__.'/assets/css/style.css') ?>">
+  <?php
+  $og_title = 'shop / aillm satire store';
+  $og_desc = 'browse our collection of fine ai artifacts — digital downloads, poster art, and llm-themed ephemera.';
+  ?>
+  <?php include __DIR__ . '/src/components/og.php'; ?>
 </head>
 <body class="shop-page">
   <?php include __DIR__ . '/src/components/header.php'; ?>
@@ -42,6 +47,17 @@ if ($search) {
           <a href="/shop.php" class="search-clear">×</a>
         <?php endif; ?>
       </form>
+
+      <div class="category-filters">
+        <a href="/shop.php" class="filter-pill <?= !$category && !$search ? 'active' : '' ?>">all</a>
+        <?php
+        $cats = array_values(array_unique(array_map(fn($p) => $p['category'], load_products())));
+        sort($cats);
+        foreach ($cats as $cat):
+        ?>
+        <a href="/shop.php?category=<?= urlencode($cat) ?>" class="filter-pill <?= $category === $cat ? 'active' : '' ?>"><?= htmlspecialchars($cat) ?></a>
+        <?php endforeach; ?>
+      </div>
     </section>
 
     <section class="product-grid">

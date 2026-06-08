@@ -11,6 +11,11 @@ $products = load_products();
   <title>cart / aillm satire</title>
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
   <link rel="stylesheet" href="/assets/css/style.css?v=<?= filemtime(__DIR__.'/assets/css/style.css') ?>">
+  <?php
+  $og_title = 'cart / aillm satire store';
+  $og_desc = 'your cart — items in your context window at the aillm satire store.';
+  ?>
+  <?php include __DIR__ . '/src/components/og.php'; ?>
 </head>
 <body class="cart-page">
   <?php include __DIR__ . '/src/components/header.php'; ?>

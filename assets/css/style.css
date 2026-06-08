@@ -1079,3 +1079,120 @@ p a:hover, li a:hover {
 .cart-data-script {
   display: none;
 }
+
+/* ── category filter pills ── */
+.category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-xs, 0.4rem);
+  margin-top: var(--gap, 1rem);
+}
+
+.filter-pill {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem;
+  text-transform: lowercase;
+  border: 1px solid var(--border, #333);
+  border-radius: 4px;
+  color: var(--text-muted, #888);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.filter-pill:hover {
+  background: var(--border, #333);
+  color: var(--text, #e0e0e0);
+}
+
+.filter-pill.active {
+  background: var(--green, #5f5);
+  color: var(--bg, #0d0d0d);
+  border-color: var(--green, #5f5);
+}
+
+/* ── related products ── */
+.related-products {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid var(--border, #333);
+  margin-top: 2rem;
+}
+
+.related-title {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 1.2rem;
+  color: var(--text-muted, #888);
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap, 1rem);
+}
+
+.related-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border, #333);
+  border-radius: 4px;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+
+.related-card:hover {
+  border-color: var(--green, #5f5);
+}
+
+.related-card-image {
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--bg-secondary, #1a1a1a);
+}
+
+.related-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.related-card-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--text-muted, #444);
+}
+
+.related-card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.7rem;
+  font-size: 0.85rem;
+}
+
+.related-card-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.related-card-price {
+  color: var(--green, #5f5);
+  margin-left: 0.5rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .related-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
