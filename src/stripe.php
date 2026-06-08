@@ -73,7 +73,8 @@ function create_checkout_session(array $line_items, string $success_url, string 
 
 function retrieve_checkout_session(string $session_id): array
 {
-    return stripe_api('GET', "/checkout/sessions/$session_id");
+    // Expand line_items so checkout.php can show purchased products
+    return stripe_api('GET', "/checkout/sessions/$session_id?expand[]=line_items");
 }
 
 // simple product image placeholder — returns an svg

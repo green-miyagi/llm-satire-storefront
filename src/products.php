@@ -35,7 +35,7 @@ function format_price(int $cents): string
 function get_download_content(array $product): string
 {
     $file = __DIR__ . '/../data/downloads/' . ($product['file'] ?? '');
-    if (file_exists($file)) {
+    if (!empty($product['file']) && is_file($file)) {
         return file_get_contents($file);
     }
 
