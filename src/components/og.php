@@ -19,6 +19,12 @@
 <?php endif; ?>
 <?php
 $site_url_og = getenv('SITE_URL') ?: 'https://aillm.space';
+// if SITE_URL is localhost (dev), detect production URL from request
+if (str_starts_with($site_url_og, 'http://localhost') || str_starts_with($site_url_og, 'http://127.')) {
+  $host = $_SERVER['HTTP_HOST'] ?? 'aillm.space';
+  $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'https';
+  $site_url_og = $scheme . '://' . $host;
+}
 $og_img_abs = '';
 if (isset($og_image) && $og_image) {
   $og_img_abs = str_starts_with($og_image, 'http') ? $og_image : rtrim($site_url_og, '/') . '/' . ltrim($og_image, '/');
