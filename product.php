@@ -187,19 +187,22 @@ $features = $product['features'] ?? [];
         $rName = $rp['name'];
         $rPrice = $rp['price_display'];
       ?>
-      <a href="/product/<?= urlencode($rSlug) ?>" class="related-card">
-        <div class="related-card-image">
-          <?php if (!empty($rp['image']) && file_exists(__DIR__ . '/assets/images/' . $rp['image'] . '.png')): ?>
-          <img src="/assets/images/<?= $rp['image'] ?>.png" alt="<?= htmlspecialchars($rName) ?>" loading="lazy">
-          <?php else: ?>
-          <div class="related-card-placeholder">⎔</div>
-          <?php endif; ?>
-        </div>
-        <div class="related-card-body">
-          <span class="related-card-name"><?= htmlspecialchars($rName) ?></span>
-          <span class="related-card-price"><?= $rPrice ?></span>
-        </div>
-      </a>
+      <div class="related-card-wrapper">
+        <a href="/product/<?= urlencode($rSlug) ?>" class="related-card">
+          <div class="related-card-image">
+            <?php if (!empty($rp['image']) && file_exists(__DIR__ . '/assets/images/' . $rp['image'] . '.png')): ?>
+            <img src="/assets/images/<?= $rp['image'] ?>.png" alt="<?= htmlspecialchars($rName) ?>" loading="lazy">
+            <?php else: ?>
+            <div class="related-card-placeholder">⎔</div>
+            <?php endif; ?>
+          </div>
+          <div class="related-card-body">
+            <span class="related-card-name"><?= htmlspecialchars($rName) ?></span>
+            <span class="related-card-price"><?= $rPrice ?></span>
+          </div>
+        </a>
+        <button class="card-add-btn" data-slug="<?= htmlspecialchars($rSlug) ?>" onclick="addToCartFromCard('<?= htmlspecialchars($rSlug) ?>', this)">+ add</button>
+      </div>
       <?php endforeach; ?>
     </div>
   </section>

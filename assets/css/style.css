@@ -1140,6 +1140,8 @@ p a:hover, li a:hover {
   gap: var(--gap, 1rem);
 }
 
+.related-card-wrapper { position: relative; }
+
 .related-card {
   display: flex;
   flex-direction: column;
