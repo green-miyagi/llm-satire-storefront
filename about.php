@@ -95,7 +95,7 @@ require_once __DIR__ . '/src/config.php';
   $ echo "thanks for being here"
   &gt; thanks for being here
   $ echo "now go buy something"
-  &gt; <a href="/shop.php" class="link">now go buy something</a></pre>
+  &gt; <a href="/shop" class="link">now go buy something</a></pre>
       </div>
     </section>
   </main>

@@ -17,7 +17,7 @@ if (!$product) {
   echo "\n      |";
   echo "\n     / \\";
   echo "\n  [product not found]";
-  echo '</pre><a href="/shop.php" class="btn primary">← back to shop</a></section></main>';
+  echo '</pre><a href="/shop" class="btn primary">← back to shop</a></section></main>';
   require __DIR__ . '/src/components/footer.php';
   exit;
 }
@@ -49,7 +49,7 @@ $features = $product['features'] ?? [];
 
   <main class="container product-detail">
     <nav class="breadcrumb">
-      <a href="/shop.php" class="link">← shop</a>
+      <a href="/shop" class="link">← shop</a>
     </nav>
 
     <div class="product-detail-layout">
@@ -163,7 +163,7 @@ $features = $product['features'] ?? [];
         <p class="subtle">instant digital delivery · no shipping · no wait</p>
         <?php if (($product['category'] ?? '') === 'art'): ?>
         <div class="pods-badge">
-          ⎔ also available as a <a href="/about.php#print">physical print</a> — no upfront cost, shipped globally
+          ⎔ also available as a <a href="/about#print">physical print</a> — no upfront cost, shipped globally
         </div>
         <?php endif; ?>
       </div>

@@ -32,8 +32,7 @@ if ($order && isset($order['line_items']['data'])) {
                     'product' => $product,
                     'quantity' => $qty,
                 ];
-                $token_val = (int)str_replace('.', '', str_replace('k', '', $product['token_price']));
-                $total_tokens += $token_val * $qty;
+$total_tokens += parse_token_price($product['token_price']) * $qty;
             }
         }
     }
@@ -69,7 +68,7 @@ if ($order && isset($order['line_items']['data'])) {
 \___)=(___/</pre>
           <h1>hmm.</h1>
           <p class="subtle"><?= htmlspecialchars($error) ?></p>
-          <p class="subtle">if you think it went through, check your email for the download. otherwise, <a href="/cart.php" class="link">try again</a>.</p>
+          <p class="subtle">if you think it went through, check your email for the download. otherwise, <a href="/cart" class="link">try again</a>.</p>
         </div>
       </section>
 
@@ -88,7 +87,7 @@ if ($order && isset($order['line_items']['data'])) {
           <h1>training data received.</h1>
           <p class="subtitle">thank you. your contribution has been added to the corpus.</p>
           <p class="subtle">order confirmed · <?= htmlspecialchars($order['id']) ?></p>
-          <p class="token-count">≈ <?= number_format($total_tokens) ?>k tokens processed</p>
+          <p class="token-count">≈ <?= number_format($total_tokens) ?> tokens processed</p>
         </div>
 
         <?php if (!empty($purchased_products)): ?>
@@ -110,7 +109,7 @@ if ($order && isset($order['line_items']['data'])) {
                     <span class="qty-badge">×<?= $qty ?></span>
                   <?php endif; ?>
                   <span class="file-type">.<?= $p['type'] ?? 'pdf' ?></span>
-                  <a href="/download.php?session=<?= urlencode($session_id) ?>&product=<?= urlencode($slug) ?>" class="download-btn" download>download</a>
+                  <a href="/download?session=<?= urlencode($session_id) ?>&product=<?= urlencode($slug) ?>" class="download-btn" download>download</a>
                 </div>
               <?php endforeach; ?>
             </div>
@@ -130,7 +129,7 @@ if ($order && isset($order['line_items']['data'])) {
   │  — aillm satire                 │
   └─────────────────────────────────┘
           </pre>
-          <a href="/shop.php" class="btn primary">← continue browsing</a>
+          <a href="/shop" class="btn primary">← continue browsing</a>
         </div>
       </section>
 
@@ -138,7 +137,7 @@ if ($order && isset($order['line_items']['data'])) {
       <section class="checkout-result">
         <div class="terminal-bracket">
           <h1>no session</h1>
-          <p class="subtle">nothing to see here. <a href="/shop.php" class="link">start shopping</a> or <a href="/" class="link">go home</a>.</p>
+          <p class="subtle">nothing to see here. <a href="/shop" class="link">start shopping</a> or <a href="/" class="link">go home</a>.</p>
         </div>
       </section>
     <?php endif; ?>

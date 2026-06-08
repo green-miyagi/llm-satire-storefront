@@ -46,7 +46,7 @@ foreach ($input['items'] as $item) {
         'slug' => $product['slug'],
     ];
 
-    $total_tokens += (int)str_replace('.', '', str_replace('k', '', $product['token_price'])) * $qty;
+        $total_tokens += parse_token_price($product['token_price']) * $qty;
     $product_names[] = $product['name'];
 }
 
@@ -56,8 +56,8 @@ if (empty($line_items)) {
     exit;
 }
 
-$success_url = rtrim($base_url, '/') . '/checkout.php?session_id={CHECKOUT_SESSION_ID}';
-$cancel_url = rtrim($base_url, '/') . '/cart.php';
+$success_url = rtrim($base_url, '/') . '/checkout?session_id={CHECKOUT_SESSION_ID}';
+$cancel_url = rtrim($base_url, '/') . '/cart';
 
 $result = create_checkout_session($line_items, $success_url, $cancel_url);
 
@@ -70,5 +70,5 @@ if (isset($result['error'])) {
 echo json_encode([
     'url' => $result['url'],
     'session_id' => $result['id'],
-    'total_tokens' => $total_tokens . 'k',
+        'total_tokens' => $total_tokens,
 ]);

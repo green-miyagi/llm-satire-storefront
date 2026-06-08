@@ -24,6 +24,15 @@ if ($uri === '/api/products.json') {
     return true;
 }
 
-// Default: serve index.php
-require __DIR__ . '/index.php';
+// Route known PHP pages
+$known_pages = ['shop', 'cart', 'checkout', 'download', 'about', '404'];
+if (in_array(trim($uri, '/'), $known_pages)) {
+    $page = trim($uri, '/');
+    require __DIR__ . "/$page.php";
+    return true;
+}
+
+// Everything else → 404
+http_response_code(404);
+require __DIR__ . '/404.php';
 return true;

@@ -53,7 +53,7 @@ $products = load_products();
   │                      │
   └──────────────────────┘
       </pre>
-      <p class="subtle">nothing in your context window yet. <a href="/shop.php" class="link">browse products</a></p>
+      <p class="subtle">nothing in your context window yet. <a href="/shop" class="link">browse products</a></p>
     </div>
 
     <div id="cart-summary" class="cart-summary" style="display:none;">

@@ -27,9 +27,9 @@
       </pre>
     </div>
     <div class="footer-links">
-      <a href="/shop.php" class="footer-link">shop</a>
+      <a href="/shop" class="footer-link">shop</a>
       <span class="footer-sep">·</span>
-      <a href="/about.php" class="footer-link">about</a>
+      <a href="/about" class="footer-link">about</a>
       <span class="footer-sep">·</span>
       <a href="https://github.com/green-miyagi/llm-satire-storefront" class="footer-link" target="_blank" rel="noopener noreferrer">github</a>
       <span class="footer-sep">·</span>

@@ -102,7 +102,7 @@
         var name = p ? p.name : item.slug;
         var price = p ? p.price_display : '—';
         var priceCents = p ? p.price_cents : 0;
-        var tokens = p ? parseInt(p.token_price) || 0 : 0;
+                var tokens = p ? parseFloat((p.token_price || '').replace('k', '')) * 1000 || 0 : 0;
         var qty = item.quantity || 1;
 
         subtotal += priceCents * qty;
@@ -133,7 +133,7 @@
       if (summaryEl) {
         summaryEl.style.display = '';
         document.getElementById('cart-subtotal').textContent = '$' + (subtotal / 100).toFixed(2);
-        document.getElementById('cart-tokens').textContent = '~' + totalTokens + 'k tokens';
+                document.getElementById('cart-tokens').textContent = '~' + totalTokens.toLocaleString() + ' tokens';
       }
 
       // wire quantity +/- buttons
@@ -225,10 +225,14 @@
 
   /* ── checkout ── */
 
+  var _checkoutInFlight = false;
+
   function handleCheckout() {
+    if (_checkoutInFlight) return;
     var cart = getCart();
     if (cart.length === 0) return;
 
+    _checkoutInFlight = true;
     var overlay = document.getElementById('checkout-overlay');
     if (overlay) overlay.style.display = '';
 
@@ -268,6 +272,7 @@
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     function done() {
+      _checkoutInFlight = false;
       if (overlay) overlay.style.display = 'none';
       if (overlay) overlay.onclick = null;
       if (progressInterval) clearInterval(progressInterval);
@@ -335,7 +340,7 @@
     var lines = Array.from(el.children);
     var totalDelay = 0;
     el.style.visibility = 'visible';
-    Array.from(el.children).forEach(function (child) { child.style.visibility = 'hidden'; });
+    lines.forEach(function (child) { child.style.visibility = 'hidden'; });
 
     lines.forEach(function (line, i) {
       var text = line.textContent;

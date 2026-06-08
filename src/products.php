@@ -32,6 +32,16 @@ function format_price(int $cents): string
     return '$' . number_format($cents / 100, 2);
 }
 
+/**
+ * Parse a token_price string like "4.20k" into a full integer count.
+ * "4.20k" → 4200, "0.01k" → 10, "5" → 5000 (assumes 'k' unit).
+ */
+function parse_token_price(string $token_price): int
+{
+    $clean = str_replace('k', '', str_replace('K', '', str_replace(',', '', $token_price)));
+    return (int)round((float)$clean * 1000);
+}
+
 function get_download_content(array $product): string
 {
     $file = __DIR__ . '/../data/downloads/' . ($product['file'] ?? '');

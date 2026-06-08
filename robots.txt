@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /checkout
+Disallow: /checkout.php
+Disallow: /download
+Disallow: /download.php
+Disallow: /cart
+
+Sitemap: https://aillm.space/sitemap.xml

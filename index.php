@@ -37,7 +37,7 @@ $featured = array_slice($products, 0, 4);
   │  [ enter store → ]             │
   └────────────────────────────────┘
         </pre>
-        <a href="/shop.php" class="btn primary large hero-btn">enter store →</a>
+        <a href="/shop" class="btn primary large hero-btn">enter store →</a>
         <p class="hero-sub">browse our collection of fine ai artifacts</p>
       </div>
 
@@ -59,7 +59,7 @@ $featured = array_slice($products, 0, 4);
     <section class="featured-section container">
       <div class="section-header">
         <h2>⎔ featured products</h2>
-        <a href="/shop.php" class="link">view all →</a>
+        <a href="/shop" class="link">view all →</a>
       </div>
       <div class="product-grid featured-grid">
         <?php foreach ($featured as $product):

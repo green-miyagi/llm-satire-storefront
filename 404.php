@@ -40,8 +40,9 @@ http_response_code(404);
   │  • hallucination (ours)      │
   └──────────────────────────────┘
     </pre>
-    <p><a href="/shop.php" class="btn primary">← return to shop</a></p>
+    <p><a href="/shop" class="btn primary">← return to shop</a></p>
   </main>
   <?php include __DIR__ . '/src/components/footer.php'; ?>
+  <script src="/assets/js/app.js?v=<?= filemtime(__DIR__.'/assets/js/app.js') ?>"></script>
 </body>
 </html>

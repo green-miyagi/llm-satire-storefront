@@ -1,4 +1,26 @@
 RewriteEngine On
+ErrorDocument 404 /404.php
+
+# Security headers
+<IfModule mod_headers.c>
+  Header always set X-Frame-Options "DENY"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# Cache static assets for 1 year (cache-bust via ?v= param)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType application/json "access plus 0 seconds"
+</IfModule>
 
 # Serve existing files/dirs directly
 RewriteCond %{REQUEST_FILENAME} -f [OR]
@@ -12,7 +34,11 @@ RewriteRule ^product/([a-zA-Z0-9_-]+)$ product.php?slug=$1 [QSA,L]
 RewriteRule ^api/products\.json$ api/products.json.php [QSA,L]
 
 # Route all PHP pages directly (shop, cart, checkout, about, etc.)
-RewriteRule ^(shop|cart|checkout|download|about)\.php$ - [L]
+RewriteRule ^(shop|cart|checkout|download|about|404)\.php$ - [L]
+
+# Clean URLs without .php extension
+RewriteRule ^(shop|cart|checkout|download|about|404)$ $1.php [L]
+
 RewriteRule ^api/ - [L]
 
 # Everything else → index.php (homepage for root)

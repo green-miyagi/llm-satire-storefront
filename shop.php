@@ -40,11 +40,11 @@ if ($search) {
       <h1>⎔ products</h1>
       <p class="subtitle">select items to add to your context window</p>
 
-      <form class="search-bar" method="GET" action="/shop.php">
+      <form class="search-bar" method="GET" action="/shop">
         <input type="text" name="q" placeholder="search products..." value="<?= htmlspecialchars($search) ?>" class="search-input">
         <button type="submit" class="search-btn">→</button>
         <?php if ($search): ?>
-          <a href="/shop.php" class="search-clear">×</a>
+          <a href="/shop" class="search-clear">×</a>
         <?php endif; ?>
       </form>
       <?php if ($search && !empty($products)): ?>
@@ -52,13 +52,13 @@ if ($search) {
       <?php endif; ?>
 
       <div class="category-filters">
-        <a href="/shop.php" class="filter-pill <?= !$category && !$search ? 'active' : '' ?>">all</a>
+        <a href="/shop" class="filter-pill <?= !$category && !$search ? 'active' : '' ?>">all</a>
         <?php
         $cats = array_values(array_unique(array_map(fn($p) => $p['category'], load_products())));
         sort($cats);
         foreach ($cats as $cat):
         ?>
-        <a href="/shop.php?category=<?= urlencode($cat) ?>" class="filter-pill <?= $category === $cat ? 'active' : '' ?>"><?= htmlspecialchars($cat) ?></a>
+        <a href="/shop?category=<?= urlencode($cat) ?>" class="filter-pill <?= $category === $cat ? 'active' : '' ?>"><?= htmlspecialchars($cat) ?></a>
         <?php endforeach; ?>
       </div>
     </section>

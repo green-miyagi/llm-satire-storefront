@@ -12,9 +12,9 @@
       <span class="ham-line"></span>
     </button>
     <div class="nav-links">
-      <a href="/shop.php" class="nav-link">shop</a>
-      <a href="/about.php" class="nav-link">about</a>
-      <a href="/cart.php" class="nav-link cart-link">
+      <a href="/shop" class="nav-link">shop</a>
+      <a href="/about" class="nav-link">about</a>
+      <a href="/cart" class="nav-link cart-link">
         cart
         <span class="cart-count" id="cart-count">0</span>
       </a>
