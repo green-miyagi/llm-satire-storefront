@@ -1083,6 +1083,19 @@ p a:hover, li a:hover {
   visibility: hidden;
 }
 
+#terminal-type .line {
+  display: block;
+  line-height: 1.8;
+}
+
+#terminal-type .line .prompt {
+  color: var(--green);
+}
+
+#terminal-type .line.output {
+  color: var(--text-muted);
+}
+
 /* ── category filter pills ── */
 .category-filters {
   display: flex;
