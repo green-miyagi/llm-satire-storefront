@@ -32,6 +32,7 @@
     }
     saveCart(cart);
     updateCartBadge();
+    pulseBadge();
     return cart;
   }
 
@@ -60,6 +61,14 @@
     var count = cartItemCount();
     el.textContent = count;
     el.style.display = count > 0 ? 'inline-flex' : 'none';
+  }
+
+  function pulseBadge() {
+    var el = document.getElementById('cart-count');
+    if (!el) return;
+    el.classList.remove('pulse');
+    void el.offsetWidth;
+    el.classList.add('pulse');
   }
 
   /* ── render cart page ── */
@@ -220,12 +229,39 @@
     var overlay = document.getElementById('checkout-overlay');
     if (overlay) overlay.style.display = '';
 
+    var progressEl = document.getElementById('checkout-progress');
+    var progressInterval;
+    if (progressEl) {
+      var phases = [
+        '▓░░░░░░░░░░░░░░░',
+        '▓▓▓░░░░░░░░░░░░░',
+        '▓▓▓▓▓░░░░░░░░░░░',
+        '▓▓▓▓▓▓▓░░░░░░░░░',
+        '▓▓▓▓▓▓▓▓▓░░░░░░░',
+        '▓▓▓▓▓▓▓▓▓▓▓░░░░░',
+        '▓▓▓▓▓▓▓▓▓▓▓▓▓░░░',
+        '▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░',
+        '▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓',
+        '████████████████',
+      ];
+      var idx = 0;
+      progressInterval = setInterval(function () {
+        progressEl.textContent = phases[idx];
+        idx = (idx + 1) % phases.length;
+      }, 250);
+    }
+
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/api/create-checkout.php', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
 
-    xhr.onload = function () {
+    function done() {
       if (overlay) overlay.style.display = 'none';
+      if (progressInterval) clearInterval(progressInterval);
+    }
+
+    xhr.onload = function () {
+      done();
       if (xhr.status === 200) {
         try {
           var data = JSON.parse(xhr.responseText);
@@ -240,7 +276,7 @@
     };
 
     xhr.onerror = function () {
-      if (overlay) overlay.style.display = 'none';
+      done();
       showToast('network error. check your connection and try again.', 'error');
     };
 

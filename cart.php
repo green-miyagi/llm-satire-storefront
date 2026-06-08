@@ -76,7 +76,7 @@ $products = load_products();
       <pre class="thinking-animation">
 ╔══════════════════════╗
 ║  processing tokens   ║
-║  ░░░░░░░░░░░░░░░░    ║
+║  <span id="checkout-progress">░░░░░░░░░░░░░░░░</span>    ║
 ║  estimating cost...  ║
 ╚══════════════════════╝
       </pre>
