@@ -79,6 +79,7 @@ $products = load_products();
   </div>
 
   <?php include __DIR__ . '/src/components/footer.php'; ?>
+  <script id="cart-product-data" type="application/json"><?= json_encode(load_products()) ?></script>
   <script src="/assets/js/app.js"></script>
 </body>
 </html>

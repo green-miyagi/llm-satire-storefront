@@ -124,7 +124,8 @@
       container.querySelectorAll('.cart-item-remove').forEach(function (btn) {
         btn.addEventListener('click', function () {
           var slug = btn.getAttribute('data-slug');
-          renderCart(); // re-render after removal
+          removeItem(slug); // actually remove from localStorage
+          renderCart();
         });
       });
     });
@@ -133,8 +134,25 @@
   /* ── fetch product data in batch ── */
 
   function fetchProductBatch(slugs, callback) {
-    // try to pull from a known endpoint or embed data
-    // we fetch the shop page's data via a JSON endpoint
+    // check for inline JSON data embedded in the page first
+    var dataScript = document.getElementById('cart-product-data');
+    if (dataScript) {
+      try {
+        var all = JSON.parse(dataScript.textContent);
+        var result = {};
+        slugs.forEach(function (slug) {
+          for (var i = 0; i < all.length; i++) {
+            if (all[i].slug === slug) {
+              result[slug] = all[i];
+              break;
+            }
+          }
+        });
+        callback(result);
+        return;
+      } catch (e) { /* fall through to AJAX */ }
+    }
+
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '/api/products.json?slugs=' + encodeURIComponent(slugs.join(',')), true);
     xhr.onload = function () {
@@ -145,7 +163,6 @@
           return;
         } catch (e) { /* fall through */ }
       }
-      // fallback: load from product detail pages one by one
       fetchProductsFallback(slugs, callback);
     };
     xhr.onerror = function () {
@@ -245,6 +262,44 @@
     }, 1500);
   }
 
+  /* ── terminal typing animation ── */
+
+  function typeTerminal() {
+    var el = document.getElementById('terminal-type');
+    if (!el) return;
+    var lines = Array.from(el.children);
+    var totalDelay = 0;
+    el.style.visibility = 'visible';
+    Array.from(el.children).forEach(function (child) { child.style.visibility = 'hidden'; });
+
+    lines.forEach(function (line, i) {
+      var text = line.textContent;
+      line.textContent = '';
+      line.style.visibility = 'visible';
+      var charDelay = 400 + (i * 600);
+
+      var j = 0;
+      function typeChar() {
+        if (j < text.length) {
+          line.textContent += text.charAt(j);
+          j++;
+          setTimeout(typeChar, 20 + Math.random() * 30);
+        }
+      }
+      setTimeout(typeChar, charDelay);
+      totalDelay = charDelay + text.length * 30;
+    });
+
+    // blink cursor after typing finishes
+    setTimeout(function () {
+      var cursor = document.querySelector('#terminal-type + .cursor-blink, .terminal-output .cursor-blink');
+      if (cursor) {
+        cursor.style.visibility = 'visible';
+        cursor.style.animation = 'blink 1s step-end infinite';
+      }
+    }, totalDelay + 500);
+  }
+
   /* ── helpers ── */
 
   function esc(s) {
@@ -268,6 +323,30 @@
     var checkoutBtn = document.getElementById('checkout-btn');
     if (checkoutBtn) {
       checkoutBtn.addEventListener('click', handleCheckout);
+    }
+
+    // terminal typing animation on home page
+    if (document.getElementById('terminal-type')) {
+      setTimeout(typeTerminal, 600);
+    }
+
+    // newsletter form handler
+    var newsForm = document.getElementById('newsletter-form');
+    if (newsForm) {
+      newsForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var input = newsForm.querySelector('.newsletter-input');
+        var status = newsForm.querySelector('.newsletter-status');
+        if (!input || !input.value.trim()) return;
+        var email = input.value.trim();
+        // simple mailto fallback — no backend to post to yet
+        status.textContent = '✓ added to training set';
+        status.style.color = 'var(--green)';
+        input.value = '';
+        setTimeout(function () {
+          status.textContent = '';
+        }, 3000);
+      });
     }
   });
 

@@ -42,13 +42,15 @@ $featured = array_slice($products, 0, 4);
 
       <div class="hero-terminal">
         <pre class="terminal-output">
-<span class="prompt">$</span> load inventory
-<span class="output">loading product catalog...</span>
-<span class="output">found <?= count($products) ?> products</span>
-<span class="prompt">$</span> check vibes
-<span class="output">vibe check: passed</span>
-<span class="prompt">$</span> init transaction
-<span class="output cursor-blink">_</span>
+<div id="terminal-type">
+<span class="line"><span class="prompt">$</span> load inventory</span>
+<span class="line output">loading product catalog...</span>
+<span class="line output">found <?= count($products) ?> products</span>
+<span class="line"><span class="prompt">$</span> check vibes</span>
+<span class="line output">vibe check: passed</span>
+<span class="line"><span class="prompt">$</span> init transaction</span>
+<span class="line output">_</span>
+</div>
         </pre>
       </div>
     </section>

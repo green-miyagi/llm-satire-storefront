@@ -48,12 +48,25 @@ $features = $product['features'] ?? [];
 
     <div class="product-detail-layout">
       <div class="product-visual">
-        <?php
+        <?php if (!empty($product['images'])):
+        // Multi-image gallery (e.g. poster series)
+        ?>
+        <div class="image-gallery">
+          <?php foreach ($product['images'] as $img):
+            $galleryPath = __DIR__ . '/assets/images/' . $img . '.png';
+            if (!file_exists($galleryPath)) continue;
+          ?>
+          <div class="gallery-item">
+            <img src="/assets/images/<?= $img ?>.png" alt="<?= htmlspecialchars($name) ?> — <?= htmlspecialchars($img) ?>" class="gallery-image" loading="lazy">
+          </div>
+          <?php endforeach; ?>
+        </div>
+        <?php else:
         $imgPath = __DIR__ . '/assets/images/' . $product['image'] . '.png';
         if (file_exists($imgPath)):
         ?>
         <img src="/assets/images/<?= $product['image'] ?>.png" alt="<?= htmlspecialchars($name) ?>" class="product-image-detail">
-        <?php endif; ?>
+        <?php endif; endif; ?>
         <div class="model-card-frame">
           <div class="model-card-header">
             <span class="model-label">model card</span>

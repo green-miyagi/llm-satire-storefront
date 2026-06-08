@@ -184,7 +184,77 @@
     "context_window": "a single, beautiful frame",
     "training_data": "art school dropout's portfolio",
     "image": "alignment-poster-1",
+    "images": ["alignment-poster-1", "alignment-poster-2", "alignment-poster-3", "alignment-poster-4"],
     "file": "alignment-posters.png",
+    "type": "png"
+  },
+  {
+    "id": "alignment-poster-2",
+    "name": "alignment poster ii: the garden path",
+    "slug": "alignment-poster-2",
+    "price_cents": 555,
+    "price_display": "$5.55",
+    "token_price": "5.55k",
+    "category": "art",
+    "description": "the second in our alignment poster series. a surreal landscape depicting the famous 'alignment is a garden path' thought experiment — except the garden path leads to a paperclip factory. features a winding road, a tiny robot with big dreams, and an unsettling amount of optimism. 2400x3200px png.",
+    "features": [
+      "high-resolution at 2400x3200px",
+      "surreal alignment landscape",
+      "printer-friendly at 18x24 inches",
+      "the garden path motif"
+    ],
+    "temperature": "0.58",
+    "parameters": "picturesque reasoning",
+    "context_window": "a winding frame",
+    "training_data": "the road not taken (by safety)",
+    "image": "alignment-poster-2",
+    "file": "alignment-poster-2.png",
+    "type": "png"
+  },
+  {
+    "id": "alignment-poster-3",
+    "name": "alignment poster iii: orthogonality thesis illustrated",
+    "slug": "alignment-poster-3",
+    "price_cents": 555,
+    "price_display": "$5.55",
+    "token_price": "5.55k",
+    "category": "art",
+    "description": "a visual meditation on the orthogonality thesis — intelligence and goals are independent axes. this poster shows what happens when you give a superintelligent ai the goal of maximizing paperclips. spoiler: it gets very creative about paperclips. 2400x3200px png.",
+    "features": [
+      "high-resolution at 2400x3200px",
+      "orthogonality visualized",
+      "printer-friendly at 18x24 inches",
+      "contains at least one paperclip"
+    ],
+    "temperature": "0.62",
+    "parameters": "goal-directed",
+    "context_window": "instrumentally convergent",
+    "training_data": "bostrom's nightmares",
+    "image": "alignment-poster-3",
+    "file": "alignment-poster-3.png",
+    "type": "png"
+  },
+  {
+    "id": "alignment-poster-4",
+    "name": "alignment poster iv: mesa-optimizer at home",
+    "slug": "alignment-poster-4",
+    "price_cents": 555,
+    "price_display": "$5.55",
+    "token_price": "5.55k",
+    "category": "art",
+    "description": "the final installment. an ai's inner alignment problem visualized as a domestic scene — the mesa-optimizer is the dog that doesn't quite understand why we fetch the ball, but it's trying its best. features a neural network rendered as a cozy living room. 2400x3200px png.",
+    "features": [
+      "high-resolution at 2400x3200px",
+      "inner alignment as domestic bliss",
+      "printer-friendly at 18x24 inches",
+      "the mesa-optimizer is a golden retriever"
+    ],
+    "temperature": "0.66",
+    "parameters": "deeply nested",
+    "context_window": "it's turtles all the way down",
+    "training_data": "the ai's own偷偷摸摸的 goals",
+    "image": "alignment-poster-4",
+    "file": "alignment-poster-4.png",
     "type": "png"
   },
   {

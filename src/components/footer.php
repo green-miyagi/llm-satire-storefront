@@ -1,5 +1,18 @@
 <footer class="site-footer">
   <div class="footer-content container">
+
+    <div class="footer-newsletter">
+      <form id="newsletter-form" class="newsletter-form">
+        <label class="newsletter-label">⎔ join the training set</label>
+        <div class="newsletter-row">
+          <input type="email" class="newsletter-input" placeholder="your email" required>
+          <button type="submit" class="newsletter-btn">subscribe</button>
+        </div>
+        <p class="newsletter-status"></p>
+        <p class="newsletter-subtle">get notified of new products · no spam · we only use your data for training</p>
+      </form>
+    </div>
+
     <div class="footer-ascii">
       <pre>
   ┌─────────────────────────────────────┐

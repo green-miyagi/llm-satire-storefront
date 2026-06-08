@@ -944,3 +944,138 @@ p a:hover, li a:hover {
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--border-light); }
+
+/* ── image gallery for multi-image products (e.g. poster series) ── */
+.image-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.gallery-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-alt);
+  transition: border-color .2s;
+}
+
+.gallery-item:hover {
+  border-color: var(--green);
+}
+
+.gallery-image {
+  width: 100%;
+  display: block;
+  filter: brightness(0.9) contrast(1.05);
+  transition: filter .3s, transform .3s;
+}
+
+.gallery-item:hover .gallery-image {
+  filter: brightness(1) contrast(1.1);
+  transform: scale(1.02);
+}
+
+@media (max-width: 600px) {
+  .image-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── newsletter footer ── */
+.footer-newsletter {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.newsletter-form {
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.newsletter-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.newsletter-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.newsletter-input {
+  flex: 1;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 0.85rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius);
+  outline: none;
+}
+
+.newsletter-input:focus {
+  border-color: var(--green);
+}
+
+.newsletter-input::placeholder {
+  color: var(--text-dim);
+}
+
+.newsletter-btn {
+  background: transparent;
+  border: 1px solid var(--green);
+  color: var(--green);
+  font-family: var(--font);
+  font-size: 0.8rem;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: all .2s;
+  white-space: nowrap;
+}
+
+.newsletter-btn:hover {
+  background: var(--green);
+  color: var(--bg);
+}
+
+.newsletter-status {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  min-height: 1.2em;
+}
+
+.newsletter-subtle {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  margin-top: 0.4rem;
+}
+
+/* ── terminal typing animation ── */
+#terminal-type {
+  visibility: hidden;
+}
+
+#terminal-type .line {
+  display: block;
+  line-height: 1.8;
+}
+
+#terminal-type .line .prompt {
+  color: var(--green);
+}
+
+#terminal-type .line.output {
+  color: var(--text-muted);
+}
+
+/* inline cart data script — hidden */
+.cart-data-script {
+  display: none;
+}
